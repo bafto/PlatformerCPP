@@ -31,7 +31,7 @@ public:
 
 	//Test stuff
 	Player player;
-	float PlayerSpeed;
+	const float gravity;
 private:
 	float DeltaTime;
 	sf::Clock DeltaClock;

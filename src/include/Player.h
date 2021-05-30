@@ -1,16 +1,16 @@
 #pragma once
 
-#include "GeneralIncludes.h"
+#include "Entity.h"
 
-class Player
+class Player : public Entity
 {
 public:
 	Player();
-	~Player();
+	virtual ~Player();
 
 public:
-	void update(const float DeltaTime);
-	void render(sf::RenderTarget& target);
-private:
-	sf::RectangleShape rect;
+	virtual void update(const float DeltaTime);
+
+public:
+	float speed;
 };

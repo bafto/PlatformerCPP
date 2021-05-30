@@ -159,15 +159,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\source\Entity.cpp" />
     <ClCompile Include="src\source\Game.cpp" />
     <ClCompile Include="src\source\main.cpp" />
     <ClCompile Include="src\source\Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\include\Debug.h" />
+    <ClInclude Include="src\include\Entity.h" />
     <ClInclude Include="src\include\Game.h" />
     <ClInclude Include="src\include\GeneralIncludes.h" />
     <ClInclude Include="src\include\Player.h" />
+    <ClInclude Include="src\include\Utility.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -5,7 +5,7 @@ Game::Game()
 	:
 	wnd(sf::VideoMode::getDesktopMode(), "PlatformerCPP"),
 	DeltaTime(0),
-	PlayerSpeed(50.f)
+	gravity(25.f)
 {
 	Debug::Println("Instanciating Game");
 
