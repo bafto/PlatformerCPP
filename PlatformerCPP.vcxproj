@@ -86,7 +86,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>DEBUG</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>C:\Users\Hendrik\source\repos\PlatformerCPP\External\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -124,7 +124,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>DEBUG</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>C:\Users\Hendrik\source\repos\PlatformerCPP\External\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -161,11 +161,13 @@
   <ItemGroup>
     <ClCompile Include="src\source\Game.cpp" />
     <ClCompile Include="src\source\main.cpp" />
+    <ClCompile Include="src\source\Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\include\Debug.h" />
     <ClInclude Include="src\include\Game.h" />
     <ClInclude Include="src\include\GeneralIncludes.h" />
+    <ClInclude Include="src\include\Player.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

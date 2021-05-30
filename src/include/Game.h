@@ -1,6 +1,7 @@
 #pragma once
 
 #include "GeneralIncludes.h"
+#include "Player.h"
 
 class Game
 {
@@ -14,6 +15,7 @@ public:
 	void operator=(const Game&) = delete;
 	void operator=(Game&&) = delete;
 
+	~Game();
 public:
 	//Get the Only instance of the game to ever exist following the singleton design pattern
 	static Game& GetInstance();
@@ -28,7 +30,8 @@ public:
 	sf::RenderWindow wnd;
 
 	//Test stuff
-	sf::RectangleShape shape;
+	Player player;
+	float PlayerSpeed;
 private:
 	float DeltaTime;
 	sf::Clock DeltaClock;

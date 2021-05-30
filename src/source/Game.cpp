@@ -4,16 +4,16 @@
 Game::Game()
 	:
 	wnd(sf::VideoMode::getDesktopMode(), "PlatformerCPP"),
-	DeltaTime(0)
+	DeltaTime(0),
+	PlayerSpeed(50.f)
 {
 	Debug::Println("Instanciating Game");
 
-	shape.setFillColor(sf::Color::Red);
-	shape.setPosition({ 0, 0 });
-	shape.setSize({ 50, 50 });
-
 	Debug::Println("Done instanciating");
 }
+
+Game::~Game()
+{}
 
 Game& Game::GetInstance()
 {
@@ -50,22 +50,15 @@ void Game::updateEvents()
 void Game::update()
 {
 	DeltaTime = DeltaClock.restart().asSeconds();
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-		shape.setPosition(shape.getPosition() + sf::Vector2f(0, -30 * DeltaTime));
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-		shape.setPosition(shape.getPosition() + sf::Vector2f(-30 * DeltaTime, 0));
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-		shape.setPosition(shape.getPosition() + sf::Vector2f(0, 30 * DeltaTime));
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-		shape.setPosition(shape.getPosition() + sf::Vector2f(30 * DeltaTime, 0));
+	
+	player.update(DeltaTime);
 }
 
 void Game::render()
 {
 	wnd.clear();
 
-	wnd.draw(shape);
+	player.render(wnd);
 
 	wnd.display();
 }
