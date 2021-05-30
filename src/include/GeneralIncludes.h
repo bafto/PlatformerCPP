@@ -4,6 +4,8 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <vector>
+#include <map>
 
 //sfml stuff
 #include "SFML/System.hpp"
