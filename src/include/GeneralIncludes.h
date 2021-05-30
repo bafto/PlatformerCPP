@@ -2,6 +2,8 @@
 
 //standard library stuff
 #include <iostream>
+#include <string>
+#include <fstream>
 
 //sfml stuff
 #include "SFML/System.hpp"
@@ -11,4 +13,3 @@
 #include "SFML/Network.hpp"
 
 //own stuff
-#include "Debug.h"

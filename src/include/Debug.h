@@ -8,7 +8,7 @@ namespace Debug
 	template<typename Arg>
 	void Print(Arg arg)
 	{
-#ifdef DEBUG
+#ifdef _DEBUG
 		std::cout << arg << " ";
 #endif
 	}
@@ -16,7 +16,7 @@ namespace Debug
 	template<typename Arg, typename... Args>
 	void Print(Arg arg, Args... args)
 	{
-#ifdef DEBUG
+#ifdef _DEBUG
 		std::cout << arg << " ";
 		Print(args...);
 #endif
@@ -25,7 +25,7 @@ namespace Debug
 	template<typename Arg>
 	void Println(Arg arg)
 	{
-#ifdef DEBUG
+#ifdef _DEBUG
 		std::cout << arg << "\n";
 #endif
 	}
@@ -33,7 +33,7 @@ namespace Debug
 	template<typename Arg, typename... Args>
 	void Println(Arg arg, Args... args)
 	{
-#ifdef DEBUG
+#ifdef _DEBUG
 		std::cout << arg << " ";
 		Println(args...);
 #endif

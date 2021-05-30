@@ -1,4 +1,5 @@
 #include "../include/Game.h"
+#include "../include/Debug.h"
 
 Game::Game()
 	:
