@@ -5,9 +5,34 @@ Game::Game()
 	:
 	wnd(sf::VideoMode::getDesktopMode(), "PlatformerCPP"),
 	DeltaTime(0),
-	gravity(25.f)
+	TexMap("./assets/Levels/TextMap0.texmap")
 {
 	Debug::Println("Instanciating Game");
+
+	for (int i = 0; i < 16; i++)
+	{
+		sf::RectangleShape shape;
+		shape.setSize({ 16, 16 });
+		shape.setPosition({ i * 16.f, 0 });
+		shape.setTexture(&TexMap.textures[0][i]);
+		shapes.push_back(shape);
+	}
+	for (int i = 0; i < 16; i++)
+	{
+		sf::RectangleShape shape;
+		shape.setSize({ 16, 16 });
+		shape.setPosition({ i * 16.f, 16 });
+		shape.setTexture(&TexMap.textures[1][i]);
+		shapes.push_back(shape);
+	}
+	for (int i = 0; i < 16; i++)
+	{
+		sf::RectangleShape shape;
+		shape.setSize({ 16, 16 });
+		shape.setPosition({ i * 16.f, 32 });
+		shape.setTexture(&TexMap.textures[2][i]);
+		shapes.push_back(shape);
+	}
 
 	Debug::Println("Done instanciating");
 }
@@ -58,6 +83,10 @@ void Game::render()
 {
 	wnd.clear();
 
+	for (auto& shape : shapes)
+	{
+		wnd.draw(shape);
+	}
 	player.render(wnd);
 
 	wnd.display();

@@ -21,7 +21,6 @@ namespace util
 	std::vector<std::string> split(const std::string& txt, char ch)
 	{
 		std::vector<std::string> strs;
-
 		size_t pos = txt.find(ch);
 		size_t initialPos = 0;
 		strs.clear();

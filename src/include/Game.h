@@ -2,6 +2,7 @@
 
 #include "GeneralIncludes.h"
 #include "Player.h"
+#include "LevelRelated/TextureMap.h"
 
 class Game
 {
@@ -31,7 +32,8 @@ public:
 
 	//Test stuff
 	Player player;
-	const float gravity;
+	TextureMap TexMap;
+	std::vector<sf::RectangleShape> shapes;
 private:
 	float DeltaTime;
 	sf::Clock DeltaClock;
