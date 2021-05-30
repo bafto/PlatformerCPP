@@ -5,11 +5,13 @@ Game::Game()
 	wnd(sf::VideoMode::getDesktopMode(), "PlatformerCPP"),
 	DeltaTime(0)
 {
-	std::cout << "Instanciating Game\n";
+	Debug::Println("Instanciating Game");
 
 	shape.setFillColor(sf::Color::Red);
 	shape.setPosition({ 0, 0 });
 	shape.setSize({ 50, 50 });
+
+	Debug::Println("Done instanciating");
 }
 
 Game& Game::GetInstance()

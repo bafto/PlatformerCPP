@@ -86,7 +86,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>DEBUG</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>C:\Users\Hendrik\source\repos\PlatformerCPP\External\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -124,7 +124,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>DEBUG</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>C:\Users\Hendrik\source\repos\PlatformerCPP\External\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -163,6 +163,7 @@
     <ClCompile Include="src\source\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\include\Debug.h" />
     <ClInclude Include="src\include\Game.h" />
     <ClInclude Include="src\include\GeneralIncludes.h" />
   </ItemGroup>
