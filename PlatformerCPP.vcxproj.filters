@@ -33,6 +33,9 @@
     <ClCompile Include="src\source\Utility.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="src\source\LevelRelated\Tilemap.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\include\Game.h">
@@ -54,6 +57,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="src\include\LevelRelated\TextureMap.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\LevelRelated\Tilemap.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

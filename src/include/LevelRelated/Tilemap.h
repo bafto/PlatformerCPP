@@ -5,8 +5,10 @@
 class Tile
 {
 public:
+	Tile();
 	Tile(sf::Vector2f pos, int tileID, sf::Texture* tex = nullptr);
 
+	void updateTexture() { if (texture)rect.setTexture(texture); }
 	void render(sf::RenderTarget& target);
 
 	int GetTileID() const { return TileID; }

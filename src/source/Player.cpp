@@ -5,7 +5,7 @@
 Player::Player()
 	:
 	Entity(),
-	speed(70.f)
+	speed(200.f)
 {
 	rect.setFillColor(sf::Color::Red);
 

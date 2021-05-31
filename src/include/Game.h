@@ -2,7 +2,7 @@
 
 #include "GeneralIncludes.h"
 #include "Player.h"
-#include "LevelRelated/TextureMap.h"
+#include "LevelRelated/Tilemap.h"
 
 class Game
 {
@@ -32,8 +32,7 @@ public:
 
 	//Test stuff
 	Player player;
-	TextureMap TexMap;
-	std::vector<sf::RectangleShape> shapes;
+	Tilemap tilemap;
 private:
 	float DeltaTime;
 	sf::Clock DeltaClock;

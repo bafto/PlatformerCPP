@@ -162,6 +162,7 @@
     <ClCompile Include="src\source\Entity.cpp" />
     <ClCompile Include="src\source\Game.cpp" />
     <ClCompile Include="src\source\LevelRelated\TextureMap.cpp" />
+    <ClCompile Include="src\source\LevelRelated\Tilemap.cpp" />
     <ClCompile Include="src\source\main.cpp" />
     <ClCompile Include="src\source\Player.cpp" />
     <ClCompile Include="src\source\Utility.cpp" />
@@ -172,6 +173,7 @@
     <ClInclude Include="src\include\Game.h" />
     <ClInclude Include="src\include\GeneralIncludes.h" />
     <ClInclude Include="src\include\LevelRelated\TextureMap.h" />
+    <ClInclude Include="src\include\LevelRelated\Tilemap.h" />
     <ClInclude Include="src\include\Player.h" />
     <ClInclude Include="src\include\Utility.h" />
   </ItemGroup>

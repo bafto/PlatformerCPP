@@ -1,6 +1,16 @@
 #include "../../include/LevelRelated/Tilemap.h"
 #include "../../include/Utility.h"
 
+Tile::Tile()
+    :
+    TileID(0),
+    texture(nullptr),
+    inHitbox(false)
+{
+    rect.setPosition({ 0, 0 });
+    rect.setSize(TileSize);
+}
+
 Tile::Tile(sf::Vector2f pos, int tileID, sf::Texture* tex)
 	:
 	TileID(tileID),
@@ -11,8 +21,6 @@ Tile::Tile(sf::Vector2f pos, int tileID, sf::Texture* tex)
 	rect.setSize(TileSize);
 	if (tex)
 		rect.setTexture(tex);
-	else
-		rect.setFillColor(sf::Color::Transparent);
 }
 
 void Tile::render(sf::RenderTarget& target)
@@ -42,9 +50,9 @@ void Tilemap::Initialize(const std::vector<std::string>& lines)
 	for (auto& vec : tiles)
 		vec.clear();
 	tiles.clear();
-	tiles.reserve(width);
+	tiles.resize(width);
 	for (auto& vec : tiles)
-		vec.reserve(height);
+		vec.resize(height);
 
 	for (int y = 0; y < height; y++)
 	{
@@ -167,6 +175,13 @@ void Tilemap::LoadTextures()
             }
         }
     }
+    for (int y = 0; y < height; y++)
+    {
+        for (int x = 0; x < width; x++)
+        {
+            tiles[x][y].updateTexture();
+        }
+    }
 }
 
 void Tilemap::MakeHitboxes()
@@ -227,13 +242,25 @@ void Tilemap::MakeHitboxes()
 
 void Tilemap::render(sf::RenderTarget& target)
 {
-    for (auto& row : tiles)
+    for (int y = 0; y < height; y++)
     {
-        for (auto& tile : row)
+        for (int x = 0; x < width; x++)
         {
-            tile.render(target);
+            tiles[x][y].render(target);
         }
     }
+#ifdef _DEBUG
+    sf::RectangleShape shape;
+    shape.setFillColor(sf::Color::Transparent);
+    shape.setOutlineColor(sf::Color::Red);
+    shape.setOutlineThickness(1);
+    for (auto& rect : hitboxes)
+    {
+        shape.setPosition({ rect.left, rect.top });
+        shape.setSize({ rect.width, rect.height });
+        target.draw(shape);
+    }
+#endif
 }
 
 Tile Tilemap::GetTileAtPos(const sf::Vector2f& pos)
