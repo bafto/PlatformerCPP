@@ -18,6 +18,26 @@ namespace util
 			rectPosition.y + rectSize.y > otherPosition.y && rectPosition.y < otherPosition.y + otherSize.y;
 	}
 
+
+	sf::Vector2f Clamp(sf::Vector2f val, sf::Vector2f min, sf::Vector2f max)
+	{
+		if (val.x < min.x)
+			val.x = min.x;
+		else if (val.x > max.x)
+			val.x = max.x;
+		if (val.y < min.y)
+			val.y = min.y;
+		else if (val.y > max.y)
+			val.y = max.y;
+		return val;
+	}
+
+	bool IsClamp(sf::Vector2f val, sf::Vector2f min, sf::Vector2f max)
+	{
+		return (val.x < min.x || val.y < min.y) || (val.x > max.x || val.y > max.y) ? true : false;
+	}
+
+
 	std::vector<std::string> split(const std::string& txt, char ch)
 	{
 		std::vector<std::string> strs;

@@ -23,6 +23,10 @@ public:
 
 	//only ever called once in main()
 	void run();
+
+public:
+	int GetDifficulty() { return Difficulty; }
+
 private:
 	void updateEvents();
 	void update();
@@ -33,7 +37,9 @@ public:
 	//Test stuff
 	Player player;
 	Tilemap tilemap;
+	float gravity = 25.f;
 private:
 	float DeltaTime;
 	sf::Clock DeltaClock;
+	int Difficulty;
 };
