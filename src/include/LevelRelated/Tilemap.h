@@ -36,7 +36,7 @@ private:
 	void MakeHitboxes();
 
 public:
-	Tile GetTileAtPos(sf::Vector2f pos);
+	Tile GetTileAtPos(const sf::Vector2f& pos);
 	bool Collides(const sf::FloatRect& rect);
 	
 public:

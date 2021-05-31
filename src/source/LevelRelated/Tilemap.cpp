@@ -1,4 +1,5 @@
 #include "../../include/LevelRelated/Tilemap.h"
+#include "../../include/Utility.h"
 
 Tile::Tile(sf::Vector2f pos, int tileID, sf::Texture* tex)
 	:
@@ -222,4 +223,30 @@ void Tilemap::MakeHitboxes()
             }
         }
     }
+}
+
+void Tilemap::render(sf::RenderTarget& target)
+{
+    for (auto& row : tiles)
+    {
+        for (auto& tile : row)
+        {
+            tile.render(target);
+        }
+    }
+}
+
+Tile Tilemap::GetTileAtPos(const sf::Vector2f& pos)
+{
+    return tiles[(int)(pos.x / Tile::TileSize.x)][(int)(pos.y / Tile::TileSize.y)];
+}
+
+bool Tilemap::Collides(const sf::FloatRect& rect)
+{
+    for (auto& hitbox : hitboxes)
+    {
+        if (util::RectIntersect(hitbox, rect))
+            return true;
+    }
+    return false;
 }
