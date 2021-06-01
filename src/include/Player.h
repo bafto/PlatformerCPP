@@ -13,4 +13,5 @@ public:
 
 public:
 	float speed;
+	sf::Vector2f lastPosition;
 };

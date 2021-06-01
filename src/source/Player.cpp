@@ -6,9 +6,11 @@
 Player::Player()
 	:
 	Entity(),
-	speed(10.f)
+	speed(10.f),
+	lastPosition(0.f, 0.f)
 {
 	rect.setFillColor(sf::Color::Blue);
+	noGravity = true;
 
 	Debug::Println("Player constructed");
 }
@@ -28,7 +30,12 @@ void Player::update(const float& DeltaTime)
 		velocity.x += (-speed * DeltaTime);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 		velocity.x += (speed * DeltaTime);
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+		velocity.y += (-speed * DeltaTime);
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+		velocity.y += (speed * DeltaTime);
 
+	lastPosition = rect.getPosition();
 	nextPosition = rect.getPosition() + velocity;
 
 	Entity::update(DeltaTime);
