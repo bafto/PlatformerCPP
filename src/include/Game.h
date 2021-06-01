@@ -2,6 +2,7 @@
 
 #include "Player.h"
 #include "LevelRelated/Level.h"
+#include "Delegate.h"
 
 class Game
 {
@@ -37,6 +38,8 @@ public:
 	//Test stuff
 	Player player;
 	Level level;
+	Delegate<int()> onClick;
+	Delegate<void(sf::Vector2f)> onClick2;
 private:
 	float DeltaTime;
 	sf::Clock DeltaClock;

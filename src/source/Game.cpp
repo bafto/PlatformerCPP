@@ -21,6 +21,9 @@ void Game::Initialize()
 
 	level.Initialize("assets\\Levels\\level0.level");
 
+	onClick += []() { return 69; };
+	onClick2 += [&](sf::Vector2f pos) { player.rect.setPosition(pos); };
+
 	Debug::Println("Done initializing");
 }
 
@@ -62,6 +65,13 @@ void Game::update()
 	
 	level.update(DeltaTime);
 	player.update(DeltaTime);
+
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+	{
+		for (auto& i : onClick())
+			Debug::Println(i);
+		onClick2({ 0.f, 0.f });
+	}
 }
 
 void Game::render()
