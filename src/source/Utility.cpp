@@ -18,6 +18,10 @@ namespace util
 			rectPosition.y + rectSize.y > otherPosition.y && rectPosition.y < otherPosition.y + otherSize.y;
 	}
 
+	bool ShapeRectIntersect(const sf::RectangleShape& rect, const sf::FloatRect& other)
+	{
+		return other.intersects({ rect.getPosition(), rect.getSize() });
+	}
 
 	float Clamp(float val, float min, float max)
 	{

@@ -6,6 +6,7 @@ namespace util
 {
 	bool RectIntersect(const sf::FloatRect& rect, const sf::FloatRect& other);
 	bool ShapeIntersect(const sf::RectangleShape& rect, const sf::RectangleShape& other);
+	bool ShapeRectIntersect(const sf::RectangleShape& rect, const sf::FloatRect& other);
 
 	float Clamp(float val, float min, float max);
 	sf::Vector2f Clamp(sf::Vector2f val, sf::Vector2f min, sf::Vector2f max);
