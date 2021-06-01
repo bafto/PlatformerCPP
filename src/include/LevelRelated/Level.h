@@ -2,6 +2,7 @@
 
 #include "Tilemap.h"
 #include "Enemies/Enemy.h"
+#include "EventTrigger.h"
 
 class Level
 {
@@ -25,7 +26,7 @@ private:
 
 public:
 	sf::Vector2f spawnPoint;
-	//std::vector<EventTrigger> EventTriggers;
+	std::vector<EventTrigger> EventTriggers;
 	std::vector<Enemy*> Enemies;
 	Tilemap tilemap;
 	float gravity;

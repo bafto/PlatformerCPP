@@ -3,6 +3,8 @@
 #include "../../include/Game.h"
 #include "../../include/Debug.h"
 
+#pragma warning (disable : 26812)
+
 Level::Level()
 	:
 	gravity(25.f),
@@ -39,7 +41,7 @@ void Level::Initialize(std::string file)
 		delete Enemies[i];
 	}
 	Enemies.clear();
-	//EventTriggers.clear();
+	EventTriggers.clear();
 
 	fileLine.clear();
 	counter = 0;
@@ -82,16 +84,17 @@ void Level::InitializeEvents()
 	{
 		std::vector<std::string> evtLine = util::split(fileLine[counter], ' ');
 
-		/*EventTriggers.emplace_back(
-			(EventID)std::stoi(evtLine[0]),
-			sf::FloatRect(std::stoi(evtLine[1]), std::stoi(evtLine[2]), std::stoi(evtLine[3]), std::stoi(evtLine[4]))
-		);*/
+		EventTriggers.emplace_back(
+			(EventTrigger::EventID)std::stoi(evtLine[0]),
+			sf::FloatRect((float)std::stoi(evtLine[1]), (float)std::stoi(evtLine[2]), (float)std::stoi(evtLine[3]), (float)std::stoi(evtLine[4]))
+		);
 
-		/*if (EventTriggers[EventTriggers.size() - 1].eventType == EventID::LevelLoader)
+		EventTrigger& lastTrigger = EventTriggers[EventTriggers.size() - 1];
+		if (lastTrigger.eventType == EventTrigger::EventID::LevelLoader)
 		{
-			EventTriggers[EventTriggers.size() - 1].nextLevel = evtLine[5];
-			EventTriggers[EventTriggers.size() - 1].OnPlayerInside += []() { Game::GetInstance().ResetGame(EventTriggers[EventTriggers.size() - 1].nextLevel); };
-		}*/
+			lastTrigger.nextLevel = "assets\\Levels\\" + evtLine[5];
+			lastTrigger.OnPlayerInside += [&](Player& player) { Game::GetInstance().Reset(lastTrigger.nextLevel); };
+		}
 	}
 }
 
@@ -151,10 +154,10 @@ void Level::InitializeTilemap()
 
 void Level::update(const float& DeltaTime)
 {
-	/*for (auto& eventTrigger : EventTriggers)
+	for (auto& eventTrigger : EventTriggers)
 	{
 		eventTrigger.update(DeltaTime);
-	}*/
+	}
 	for (Enemy* enemy : Enemies)
 	{
 		enemy->update(DeltaTime);
@@ -164,12 +167,10 @@ void Level::update(const float& DeltaTime)
 void Level::render(sf::RenderTarget& target)
 {
 	tilemap.render(target);
-#ifdef _DEBUG
-	/*for (auto& eventTrigger : EventTriggers)
+	for (auto& eventTrigger : EventTriggers)
 	{
 		eventTrigger.render(target);
-	}*/
-#endif
+	}
 	for (Enemy* enemy : Enemies)
 	{
 		enemy->render(target);
@@ -180,7 +181,6 @@ void Level::Reset()
 {
 	Game::GetInstance().player = Player();
 	Initialize(FilePath);
-	//Game::GetInstance().globalTimer = 0;
 }
 
 std::string Level::GetFilePath()

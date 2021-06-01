@@ -1,6 +1,8 @@
 #include "../../include/LevelRelated/Tilemap.h"
 #include "../../include/Utility.h"
 
+#pragma warning (disable : 26812)
+
 Tile::Tile()
     :
     TileID(0),
@@ -56,6 +58,8 @@ void Tilemap::Initialize(const std::vector<std::string>& lines)
 
 	height = lines.size() - 2;
 	width = lines[2].length();
+
+    hitboxes.clear();
 
 	for (auto& vec : tiles)
 		vec.clear();

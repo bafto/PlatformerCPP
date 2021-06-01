@@ -3,20 +3,16 @@
 #include "Player.h"
 #include "LevelRelated/Level.h"
 #include "Delegate.h"
+#include "NonCopyable.h"
 
-class Game
+class Game : public NonCopyable
 {
 private:
 	Game();
 
 public:
-	//delete all copy stuff as of the singleton design pattern
-	Game(const Game&) = delete;
-	Game(Game&&) = delete;
-	void operator=(const Game&) = delete;
-	void operator=(Game&&) = delete;
+	virtual ~Game();
 
-	~Game();
 public:
 	//Get the Only instance of the game to ever exist following the singleton design pattern
 	static Game& GetInstance();
@@ -26,6 +22,8 @@ public:
 	void run();
 
 public:
+	void Reset(std::string levelPath);
+
 	int GetDifficulty() { return Difficulty; }
 
 private:
@@ -35,11 +33,8 @@ private:
 public:
 	sf::RenderWindow wnd;
 
-	//Test stuff
 	Player player;
 	Level level;
-	Delegate<int()> onClick;
-	Delegate<void(sf::Vector2f)> onClick2;
 private:
 	float DeltaTime;
 	sf::Clock DeltaClock;

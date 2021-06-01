@@ -1,6 +1,8 @@
 #include "../include/Game.h"
 #include "../include/Debug.h"
 
+#pragma warning (disable : 26812)
+
 Game::Game()
 	:
 	wnd(sf::VideoMode::getDesktopMode(), "PlatformerCPP"),
@@ -20,9 +22,6 @@ void Game::Initialize()
 	Debug::Println("Initializing Game");
 
 	level.Initialize("assets\\Levels\\level0.level");
-
-	onClick += []() { return 69; };
-	onClick2 += [&](sf::Vector2f pos) { player.rect.setPosition(pos); };
 
 	Debug::Println("Done initializing");
 }
@@ -65,13 +64,6 @@ void Game::update()
 	
 	level.update(DeltaTime);
 	player.update(DeltaTime);
-
-	if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
-	{
-		for (auto& i : onClick())
-			Debug::Println(i);
-		onClick2({ 0.f, 0.f });
-	}
 }
 
 void Game::render()
@@ -83,4 +75,10 @@ void Game::render()
 	player.render(wnd);
 
 	wnd.display();
+}
+
+void Game::Reset(std::string levelPath)
+{
+	player = Player();
+	level.Initialize(levelPath);
 }
