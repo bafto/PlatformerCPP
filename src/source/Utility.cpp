@@ -19,6 +19,15 @@ namespace util
 	}
 
 
+	float Clamp(float val, float min, float max)
+	{
+		if (val < min)
+			val = min;
+		else if (val > max)
+			val = max;
+		return val;
+	}
+
 	sf::Vector2f Clamp(sf::Vector2f val, sf::Vector2f min, sf::Vector2f max)
 	{
 		if (val.x < min.x)
