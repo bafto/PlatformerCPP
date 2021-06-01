@@ -64,11 +64,6 @@ public:
 	Delegate() = default;
 	virtual ~Delegate() = default;
 
-	Delegate(const Delegate&) = delete;
-	Delegate(Delegate&&) = delete;
-	void operator=(const Delegate&) = delete;
-	void operator=(Delegate&&) = delete;
-
 	ActualReturnType operator()(TArgs... args)
 	{
 		return Invoke(args...);
