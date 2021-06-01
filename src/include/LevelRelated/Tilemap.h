@@ -8,10 +8,10 @@ public:
 	Tile();
 	Tile(sf::Vector2f pos, int tileID, sf::Texture* tex = nullptr);
 
-	void updateTexture() { if (texture)rect.setTexture(texture); }
+	void updateTexture();
 	void render(sf::RenderTarget& target);
 
-	int GetTileID() const { return TileID; }
+	int GetTileID() const;
 
 public:
 	static inline const sf::Vector2f TileSize = sf::Vector2f(50.f, 50.f);
@@ -40,13 +40,16 @@ private:
 public:
 	Tile GetTileAtPos(const sf::Vector2f& pos);
 	bool Collides(const sf::FloatRect& rect);
-	
+	sf::Vector2i GetSize();
+	sf::Vector2f GetPixelSize();
+	sf::FloatRect GetBounds();
+
 public:
 	std::vector<std::vector<Tile>> tiles;
 	std::vector<sf::FloatRect> hitboxes;
-	int width, height;
 
 private:
 	TextureMap texMap;
+	int width, height;
 
 };

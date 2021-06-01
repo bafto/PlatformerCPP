@@ -23,6 +23,16 @@ Tile::Tile(sf::Vector2f pos, int tileID, sf::Texture* tex)
 		rect.setTexture(tex);
 }
 
+void Tile::updateTexture() 
+{
+    if (texture)rect.setTexture(texture);
+}
+
+int Tile::GetTileID() const
+{
+    return TileID;
+}
+
 void Tile::render(sf::RenderTarget& target)
 {
 	if (TileID != 0)
@@ -276,4 +286,19 @@ bool Tilemap::Collides(const sf::FloatRect& rect)
             return true;
     }
     return false;
+}
+
+sf::Vector2i Tilemap::GetSize() 
+{
+    return sf::Vector2i(width, height);
+}
+
+sf::Vector2f Tilemap::GetPixelSize() 
+{
+    return sf::Vector2f(width * Tile::TileSize.x, height * Tile::TileSize.y);
+}
+
+sf::FloatRect Tilemap::GetBounds() 
+{
+    return sf::FloatRect({ 0.f, 0.f }, GetPixelSize());
 }
