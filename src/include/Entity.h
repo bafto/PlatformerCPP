@@ -8,7 +8,7 @@ public:
 	Entity();
 	virtual ~Entity();
 
-	virtual void update(const float DeltaTime);
+	virtual void update(const float& DeltaTime);
 	virtual void render(sf::RenderTarget& target);
 
 protected:
