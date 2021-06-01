@@ -16,3 +16,5 @@ private:
 	std::string Caption, message, file;
 	int line;
 };
+
+#define FILEEXCEPTION(file) GameException("File Exception", "Failed to open \"" + file + "\"", __FILE__, __LINE__)

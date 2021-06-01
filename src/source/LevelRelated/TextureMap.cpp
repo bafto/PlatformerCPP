@@ -1,5 +1,6 @@
 #include "../../include/LevelRelated/TextureMap.h"
 #include "../../include/Utility.h"
+#include "../../include/GameException.h"
 
 TextureMap::TextureMap()
 {
@@ -20,12 +21,9 @@ void TextureMap::Initialize(std::string file)
 	if (ifs.is_open())
 	{
 		std::vector<std::string> lines;
-		while (!ifs.eof())
-		{
-			ifs.seekg(3);
-			for (std::string line; std::getline(ifs, line);)
-				lines.push_back(line);
-		}
+		ifs.seekg(3);
+		for (std::string line; std::getline(ifs, line);)
+			lines.push_back(line);
 		for (auto& line : lines)
 		{
 			std::vector<std::string> strs = util::split(line, ' ');
@@ -38,7 +36,7 @@ void TextureMap::Initialize(std::string file)
 				{
 					sf::Texture tex;
 					if (!tex.loadFromFile(strs[1], { x * 16, y * 16, 16, 16 }))
-						throw ""; //Exceptions follow later
+						throw FILEEXCEPTION(strs[1]); //Exceptions follow later
 					sliced.push_back(std::move(tex));
 				}
 			}
@@ -47,6 +45,6 @@ void TextureMap::Initialize(std::string file)
 	}
 	else
 	{
-		throw ""; //exception following later
+		throw FILEEXCEPTION(file); //exception following later
 	}
 }

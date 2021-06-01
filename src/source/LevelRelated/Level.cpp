@@ -2,6 +2,7 @@
 #include "../../include/Utility.h"
 #include "../../include/Game.h"
 #include "../../include/Debug.h"
+#include "../../include/GameException.h"
 
 #pragma warning (disable : 26812)
 
@@ -72,7 +73,7 @@ void Level::Initialize(std::string file)
 	}
 	else
 	{
-		throw ""; //Exception will follow
+		throw FILEEXCEPTION(file); 
 	}
 
 	Debug::Println("Done initializing Level");
