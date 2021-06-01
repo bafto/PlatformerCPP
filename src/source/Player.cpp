@@ -18,8 +18,8 @@ Player::~Player()
 
 void Player::update(const float& DeltaTime)
 {
-	if (util::IsClamp(rect.getPosition(), { 0.f, 0.f }, Game::GetInstance().tilemap.GetPixelSize()))
-		rect.setPosition({ 0.f, 0.f });
+	if (util::IsClamp(rect.getPosition(), { 0.f, 0.f }, Game::GetInstance().level.tilemap.GetPixelSize()))
+		Game::GetInstance().level.Reset();
 
 	velocity.x = util::Clamp(velocity.x, -speed, speed);
 

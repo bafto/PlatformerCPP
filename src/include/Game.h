@@ -1,9 +1,7 @@
 #pragma once
 
-#include "GeneralIncludes.h"
 #include "Player.h"
-#include "LevelRelated/Tilemap.h"
-#include "LevelRelated/Enemies/Enemy.h"
+#include "LevelRelated/Level.h"
 
 class Game
 {
@@ -21,6 +19,7 @@ public:
 public:
 	//Get the Only instance of the game to ever exist following the singleton design pattern
 	static Game& GetInstance();
+	void Initialize();
 
 	//only ever called once in main()
 	void run();
@@ -37,9 +36,7 @@ public:
 
 	//Test stuff
 	Player player;
-	Tilemap tilemap;
-	float gravity = 25.f;
-	Enemy enemy;
+	Level level;
 private:
 	float DeltaTime;
 	sf::Clock DeltaClock;

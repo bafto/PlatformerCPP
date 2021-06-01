@@ -5,6 +5,7 @@ int main()
 {
 	try
 	{
+		Game::GetInstance().Initialize();
 		Game::GetInstance().run();
 	}
 	catch (...)

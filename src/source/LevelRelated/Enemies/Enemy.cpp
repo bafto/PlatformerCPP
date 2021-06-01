@@ -11,7 +11,11 @@ Enemy::Enemy(sf::Vector2f pos)
 {
 	color = sf::Color::Red;
 	rect.setFillColor(color);
+	rect.setPosition(startPosition);
 }
+
+Enemy::~Enemy()
+{}
 
 void Enemy::update(const float& DeltaTime)
 {
@@ -21,7 +25,7 @@ void Enemy::update(const float& DeltaTime)
 
 void Enemy::HandleCollision()
 {
-	if (util::IsClamp(rect.getPosition(), { 0.f, 0.f }, Game::GetInstance().tilemap.GetPixelSize()))
+	if (util::IsClamp(rect.getPosition(), { 0.f, 0.f }, Game::GetInstance().level.tilemap.GetPixelSize()))
 		rect.setPosition(startPosition);
 	else
 		Entity::HandleCollision();
@@ -29,6 +33,6 @@ void Enemy::HandleCollision()
 
 void Enemy::AI()
 {
-	velocity = util::Clamp(velocity, { 0.f, 0.f }, { 0.f, Game::GetInstance().gravity });
+	velocity = util::Clamp(velocity, { 0.f, 0.f }, { 0.f, Game::GetInstance().level.gravity });
 	nextPosition = rect.getPosition() + velocity;
 }

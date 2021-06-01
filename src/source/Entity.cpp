@@ -16,7 +16,7 @@ Entity::~Entity()
 void Entity::update(const float& DeltaTime)
 {
 	if (!noGravity)
-		velocity.y += Game::GetInstance()./*level.*/gravity * DeltaTime; //uncomment when levels are added
+		velocity.y += Game::GetInstance().level.gravity * DeltaTime; //uncomment when levels are added
 	HandleCollision();
 }
 
@@ -29,9 +29,9 @@ void Entity::HandleCollision()
 {
     // Handle collision by checking X first then Y then both and resolving it accordingly
     sf::FloatRect nextRect = sf::FloatRect(nextPosition, rect.getSize());
-    for (int i = 0; i < Game::GetInstance()/*.level*/.tilemap.hitboxes.size(); i++)
+    for (unsigned int i = 0; i < Game::GetInstance().level.tilemap.hitboxes.size(); i++)
     {
-        sf::FloatRect& hitbox = Game::GetInstance()/*.level*/.tilemap.hitboxes[i];
+        sf::FloatRect& hitbox = Game::GetInstance().level.tilemap.hitboxes[i];
         if (util::RectIntersect(nextRect, hitbox))
         {
             // try only x intersection
