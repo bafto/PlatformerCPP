@@ -1,13 +1,14 @@
 #include "../include/Player.h"
 #include "../include/Game.h"
 #include "../include/Debug.h"
+#include "../include/Utility.h"
 
 Player::Player()
 	:
 	Entity(),
-	speed(200.f)
+	speed(10.f)
 {
-	rect.setFillColor(sf::Color::Red);
+	rect.setFillColor(sf::Color::Blue);
 
 	Debug::Println("Player constructed");
 }
@@ -15,22 +16,20 @@ Player::Player()
 Player::~Player()
 {}
 
-void Player::update(const float DeltaTime)
+void Player::update(const float& DeltaTime)
 {
+	if (util::IsClamp(rect.getPosition(), { 0.f, 0.f }, Game::GetInstance().tilemap.GetPixelSize()))
+		rect.setPosition({ 0.f, 0.f });
+
+	velocity.x = util::Clamp(velocity.x, -speed, speed);
+
 	//temporary movement code
-
-	velocity = { 0, 0 };
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-		velocity.y += (-speed * DeltaTime);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 		velocity.x += (-speed * DeltaTime);
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
-		velocity.y += (speed * DeltaTime);
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 		velocity.x += (speed * DeltaTime);
 
-	Entity::update(DeltaTime);
+	nextPosition = rect.getPosition() + velocity;
 
-	rect.move(velocity);
+	Entity::update(DeltaTime);
 }

@@ -7,6 +7,8 @@ class Enemy : public Entity
 public:
 	Enemy(sf::Vector2f pos);
 
+	void update(const float& DeltaTime) override;
+
 	int GetDamage() { return Damage; }
 
 protected:

@@ -9,7 +9,7 @@ public:
 	virtual ~Player();
 
 public:
-	virtual void update(const float DeltaTime);
+	virtual void update(const float& DeltaTime);
 
 public:
 	float speed;

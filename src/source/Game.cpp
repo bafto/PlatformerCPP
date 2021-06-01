@@ -5,6 +5,8 @@ Game::Game()
 	:
 	wnd(sf::VideoMode::getDesktopMode(), "PlatformerCPP"),
 	DeltaTime(0),
+	Difficulty(1),
+	enemy(sf::Vector2f(30, 30)),
 	tilemap(std::vector<std::string>{
 	"map:",
 	"TextMap0.texmap",
@@ -99,6 +101,7 @@ void Game::update()
 {
 	DeltaTime = DeltaClock.restart().asSeconds();
 	
+	enemy.update(DeltaTime);
 	player.update(DeltaTime);
 }
 
@@ -108,6 +111,7 @@ void Game::render()
 
 	wnd.setView(sf::View(player.rect.getPosition(), { 1920, 1080 }));
 	tilemap.render(wnd);
+	enemy.render(wnd);
 	player.render(wnd);
 
 	wnd.display();

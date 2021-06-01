@@ -3,6 +3,7 @@
 #include "GeneralIncludes.h"
 #include "Player.h"
 #include "LevelRelated/Tilemap.h"
+#include "LevelRelated/Enemies/Enemy.h"
 
 class Game
 {
@@ -38,6 +39,7 @@ public:
 	Player player;
 	Tilemap tilemap;
 	float gravity = 25.f;
+	Enemy enemy;
 private:
 	float DeltaTime;
 	sf::Clock DeltaClock;
