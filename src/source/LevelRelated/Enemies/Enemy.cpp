@@ -25,7 +25,7 @@ void Enemy::update(const float& DeltaTime)
 
 void Enemy::HandleCollision()
 {
-	if (util::IsClamp(rect.getPosition(), { 0.f, 0.f }, Game::GetInstance().level.tilemap.GetPixelSize()))
+	if (util::IsVecClamp(rect.getPosition(), { 0.f, 0.f }, Game::GetInstance().level.tilemap.GetPixelSize()))
 		rect.setPosition(startPosition);
 	else
 		Entity::HandleCollision();
@@ -33,6 +33,6 @@ void Enemy::HandleCollision()
 
 void Enemy::AI(const float& DeltaTime)
 {
-	velocity = util::Clamp(velocity, { 0.f, 0.f }, { 0.f, Game::GetInstance().level.gravity });
+	velocity = util::VecClamp(velocity, { 0.f, 0.f }, { 0.f, Game::GetInstance().level.gravity });
 	nextPosition = rect.getPosition() + velocity;
 }

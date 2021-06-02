@@ -23,33 +23,6 @@ namespace util
 		return other.intersects({ rect.getPosition(), rect.getSize() });
 	}
 
-	float Clamp(float val, float min, float max)
-	{
-		if (val < min)
-			val = min;
-		else if (val > max)
-			val = max;
-		return val;
-	}
-
-	sf::Vector2f Clamp(sf::Vector2f val, sf::Vector2f min, sf::Vector2f max)
-	{
-		if (val.x < min.x)
-			val.x = min.x;
-		else if (val.x > max.x)
-			val.x = max.x;
-		if (val.y < min.y)
-			val.y = min.y;
-		else if (val.y > max.y)
-			val.y = max.y;
-		return val;
-	}
-
-	bool IsClamp(sf::Vector2f val, sf::Vector2f min, sf::Vector2f max)
-	{
-		return (val.x < min.x || val.y < min.y) || (val.x > max.x || val.y > max.y) ? true : false;
-	}
-
 
 	sf::Vector2f RotateBy(sf::Vector2f spinningPoint, double radians, sf::Vector2f center)
 	{
@@ -60,16 +33,6 @@ namespace util
 		result.x += vector.x * cos - vector.y * sin;
 		result.y += vector.x * sin + vector.y * cos;
 		return result;
-	}
-
-	float VecLength(sf::Vector2f vec)
-	{
-		return (float)std::sqrt(((vec.x * vec.x) + (vec.y * vec.y)));
-	}
-
-	sf::Vector2f VecNormalize(sf::Vector2f vec)
-	{
-		return vec / VecLength(vec);
 	}
 
 

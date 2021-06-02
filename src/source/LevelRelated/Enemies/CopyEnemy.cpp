@@ -1,5 +1,6 @@
 #include "../../../include/LevelRelated/Enemies/CopyEnemy.h"
 #include "../../../include/Game.h"
+#include "../../../include/Utility.h"
 
 CopyEnemy::CopyEnemy(sf::Vector2f pos, float dist)
 	:
@@ -7,6 +8,7 @@ CopyEnemy::CopyEnemy(sf::Vector2f pos, float dist)
 	distanceToPlayer(dist)
 {
 	color = sf::Color::Blue;
+	util::Clamp(distanceToPlayer, 1.1f, 60.f);
 }
 
 CopyEnemy::~CopyEnemy()

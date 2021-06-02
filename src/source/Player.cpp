@@ -81,7 +81,7 @@ void Player::update(const float& DeltaTime)
 
 void Player::HandleCollision()
 {
-	if (util::IsClamp(rect.getPosition(), { 0.f, 0.f }, Game::GetInstance().level.tilemap.GetPixelSize()))
+	if (util::IsVecClamp(rect.getPosition(), { 0.f, 0.f }, Game::GetInstance().level.tilemap.GetPixelSize()))
 		dead = true;
 	else
 		Entity::HandleCollision();
@@ -105,7 +105,7 @@ void Player::HandleInput(const float& DeltaTime)
 
 	velocity.x -= velocity.x / 15.f;
 
-	velocity = util::Clamp(velocity, { -maxWalkSpeed, -maxJumpSpeed }, { maxWalkSpeed, maxFallSpeed });
+	velocity = util::VecClamp(velocity, { -maxWalkSpeed, -maxJumpSpeed }, { maxWalkSpeed, maxFallSpeed });
 
 	trail.push_back(rect.getPosition());
 	if (trail.size() > 60)

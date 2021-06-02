@@ -22,7 +22,7 @@ void PathEnemy::AI(const float& DeltaTime)
 {
 	velocity.x += turn ? speed * DeltaTime : -speed * DeltaTime;
 
-	velocity = util::Clamp(velocity, { -speed, 0.f }, { speed, Game::GetInstance().level.gravity });
+	velocity = util::VecClamp(velocity, { -speed, 0.f }, { speed, Game::GetInstance().level.gravity });
 
 	nextPosition = rect.getPosition() + velocity;
 
