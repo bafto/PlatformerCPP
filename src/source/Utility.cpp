@@ -51,6 +51,18 @@ namespace util
 	}
 
 
+	sf::Vector2f RotateBy(sf::Vector2f spinningPoint, double radians, sf::Vector2f center)
+	{
+		float cos = (float)std::cos(radians);
+		float sin = (float)std::sin(radians);
+		sf::Vector2f vector = spinningPoint - center;
+		sf::Vector2f result = center;
+		result.x += vector.x * cos - vector.y * sin;
+		result.y += vector.x * sin + vector.y * cos;
+		return result;
+	}
+
+
 	std::vector<std::string> split(const std::string& txt, char ch)
 	{
 		std::vector<std::string> strs;

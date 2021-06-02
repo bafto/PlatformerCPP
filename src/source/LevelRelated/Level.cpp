@@ -5,6 +5,7 @@
 #include "../../include/GameException.h"
 
 #include "../../include/LevelRelated/Enemies/CopyEnemy.h"
+#include "../../include/LevelRelated/Enemies/SpinEnemy.h"
 
 #pragma warning (disable : 26812)
 
@@ -132,12 +133,12 @@ void Level::InitializeEnemies()
 		{
 			Enemies.push_back(new CopyEnemy(pos, std::stof(enemyLine[3])));
 			break;
-		}/*
-		case (int)EnemyID::Spin:
+		}
+		case (int)Enemy::EnemyID::Spin:
 		{
 			Enemies.push_back(new SpinEnemy(pos, std::stof(enemyLine[3]), std::stof(enemyLine[4])));
 			break;
-		}*/
+		}
 		default:
 			break;
 		}
