@@ -8,6 +8,14 @@
 
 class Game : public NonCopyable
 {
+public:
+	enum class GameMode
+	{
+		MainMenu = 0,
+		InGame,
+		DeathScreen
+	};
+
 private:
 	Game();
 
@@ -38,6 +46,7 @@ public:
 
 	Input input;
 
+	GameMode gameMode;
 	Player player;
 	Level level;
 private:

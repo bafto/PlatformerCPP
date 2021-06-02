@@ -4,6 +4,8 @@
 #include "../../include/Debug.h"
 #include "../../include/GameException.h"
 
+#include "../../include/LevelRelated/Enemies/CopyEnemy.h"
+
 #pragma warning (disable : 26812)
 
 Level::Level()
@@ -125,12 +127,12 @@ void Level::InitializeEnemies()
 			float speed = std::stof(enemyLine[5]);
 			Enemies.push_back(new TrackEnemy(pos, area, speed));
 			break;
-		}
-		case (int)EnemyID::Copy:
+		}*/
+		case (int)Enemy::EnemyID::Copy:
 		{
 			Enemies.push_back(new CopyEnemy(pos, std::stof(enemyLine[3])));
 			break;
-		}
+		}/*
 		case (int)EnemyID::Spin:
 		{
 			Enemies.push_back(new SpinEnemy(pos, std::stof(enemyLine[3]), std::stof(enemyLine[4])));
