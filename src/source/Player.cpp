@@ -8,7 +8,7 @@ Player::Player()
 	Entity(),
 	lastPosition(0.f, 0.f),
 	speed(10.f),
-	maxWalkSpeed(10.f),
+	maxWalkSpeed(7.5f),
 	maxJumpSpeed(10.f),
 	maxFallSpeed(15.f),
 	acceleration(0.5f),
@@ -97,7 +97,7 @@ void Player::HandleInput(const float& DeltaTime)
 		velocity.x -= 10 * std::abs(velocity.x) * DeltaTime + acceleration;
 	if (Game::GetInstance().input.KeyboardState(sf::Keyboard::D).down)
 		velocity.x += 10 * std::abs(velocity.x) * DeltaTime + acceleration;
-	if (grounded && Game::GetInstance().input.KeyboardState(sf::Keyboard::W).down)
+	if (grounded && Game::GetInstance().input.KeyboardState(sf::Keyboard::W).pressed)
 	{
 		velocity.y -= jumpspeed;
 		//onJump.play();

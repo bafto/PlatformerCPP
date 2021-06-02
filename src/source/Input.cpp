@@ -37,7 +37,8 @@ void Input::update(sf::Event event)
 	switch (event.type)
 	{
 	case sf::Event::KeyPressed:
-		keyboardState[event.key.code].pressed = true;
+		if (!lastKeyboardState[event.key.code].down)
+			keyboardState[event.key.code].pressed = true;
 		keyboardState[event.key.code].down = true;
 		break;
 	case sf::Event::KeyReleased:
