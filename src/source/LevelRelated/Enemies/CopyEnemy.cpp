@@ -14,7 +14,7 @@ CopyEnemy::~CopyEnemy()
 
 }
 
-void CopyEnemy::AI()
+void CopyEnemy::AI(const float& DeltaTime)
 {
 	Player& player = Game::GetInstance().player;
 	if (player.trail.size() >= 60)

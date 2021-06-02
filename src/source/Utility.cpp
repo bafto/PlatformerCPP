@@ -62,6 +62,16 @@ namespace util
 		return result;
 	}
 
+	float VecLength(sf::Vector2f vec)
+	{
+		return (float)std::sqrt(((vec.x * vec.x) + (vec.y * vec.y)));
+	}
+
+	sf::Vector2f VecNormalize(sf::Vector2f vec)
+	{
+		return vec / VecLength(vec);
+	}
+
 
 	std::vector<std::string> split(const std::string& txt, char ch)
 	{

@@ -19,7 +19,7 @@ Enemy::~Enemy()
 
 void Enemy::update(const float& DeltaTime)
 {
-	AI();
+	AI(DeltaTime);
 	Entity::update(DeltaTime);
 }
 
@@ -31,7 +31,7 @@ void Enemy::HandleCollision()
 		Entity::HandleCollision();
 }
 
-void Enemy::AI()
+void Enemy::AI(const float& DeltaTime)
 {
 	velocity = util::Clamp(velocity, { 0.f, 0.f }, { 0.f, Game::GetInstance().level.gravity });
 	nextPosition = rect.getPosition() + velocity;

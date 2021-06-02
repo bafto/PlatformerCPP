@@ -9,7 +9,7 @@ public:
 	virtual ~SpinEnemy();
 
 protected:
-	virtual void AI() override;
+	virtual void AI(const float& DeltaTime) override;
 	virtual void HandleCollision();
 
 private:

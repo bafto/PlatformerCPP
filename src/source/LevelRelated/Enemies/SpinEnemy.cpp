@@ -17,7 +17,7 @@ SpinEnemy::~SpinEnemy()
 
 }
 
-void SpinEnemy::AI()
+void SpinEnemy::AI(const float& DeltaTime)
 {
 	rect.setPosition(startPosition + util::RotateBy(sf::Vector2f(1, 1), timer) * distanceToAnchor);
 	nextPosition = rect.getPosition() + velocity;

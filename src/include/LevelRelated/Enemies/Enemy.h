@@ -23,7 +23,7 @@ public:
 
 protected:
 	virtual void HandleCollision() override;
-	virtual void AI();
+	virtual void AI(const float& DeltaTime);
 
 public:
 	float speed;

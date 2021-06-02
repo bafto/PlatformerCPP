@@ -9,7 +9,7 @@ public:
 	virtual ~CopyEnemy();
 
 protected:
-	virtual void AI() override;
+	virtual void AI(const float& DeltaTime) override;
 
 private:
 	float distanceToPlayer;
