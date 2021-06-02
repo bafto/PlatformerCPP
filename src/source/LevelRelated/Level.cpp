@@ -7,6 +7,7 @@
 #include "../../include/LevelRelated/Enemies/CopyEnemy.h"
 #include "../../include/LevelRelated/Enemies/SpinEnemy.h"
 #include "../../include/LevelRelated/Enemies/TrackEnemy.h"
+#include "../../include/LevelRelated/Enemies/PathEnemy.h"
 
 #pragma warning (disable : 26812)
 
@@ -116,16 +117,16 @@ void Level::InitializeEnemies()
 			Enemies.push_back(new Enemy(pos));
 			break;
 		}
-		/*case (int)EnemyID::Path:
+		case (int)Enemy::EnemyID::Path:
 		{
 			int start = std::stoi(enemyLine[3]), stop = std::stoi(enemyLine[4]);
 			float speed = std::stof(enemyLine[5]);
 			Enemies.push_back(new PathEnemy(pos, start, stop, speed));
 			break;
-		}*/
+		}
 		case (int)Enemy::EnemyID::Track:
 		{
-			sf::Vector2f area = sf::Vector2f(std::stoi(enemyLine[3]), std::stoi(enemyLine[4]));
+			sf::Vector2f area = sf::Vector2f((float)std::stoi(enemyLine[3]), (float)std::stoi(enemyLine[4]));
 			float speed = std::stof(enemyLine[5]);
 			Enemies.push_back(new TrackEnemy(pos, area, speed));
 			break;
