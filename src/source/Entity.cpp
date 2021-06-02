@@ -4,7 +4,10 @@
 
 Entity::Entity()
 	:
-	noGravity(false)
+	noGravity(false),
+    color(sf::Color::Magenta),
+    nextPosition(0.f, 0.f),
+    velocity(0.f, 0.f)
 {
 	rect.setPosition({ 0, 0 });
 	rect.setSize({ 50, 50 });

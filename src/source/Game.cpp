@@ -23,6 +23,8 @@ void Game::Initialize()
 {
 	Debug::Println("Initializing Game");
 
+	HUDView = sf::View(sf::FloatRect(0, 0, 1920, 1080));
+
 	input.Initialize();
 	level.Initialize("assets\\Levels\\level0.level");
 
@@ -73,26 +75,15 @@ void Game::update()
 	
 	level.update(DeltaTime);
 	player.update(DeltaTime);
-
-	if (input.MouseState(sf::Mouse::Left).pressed)
-		Debug::Println("Left pressed");
-	if (input.KeyboardState(sf::Keyboard::K).pressed)
-		Debug::Println("K pressed");
-	if (input.MouseState(sf::Mouse::Left).released)
-		Debug::Println("Left released");
-	if (input.KeyboardState(sf::Keyboard::K).released)
-		Debug::Println("K released");
-	if (input.MouseState(sf::Mouse::Left).held)
-		Debug::Println("Left held");
-	if (input.KeyboardState(sf::Keyboard::K).held)
-		Debug::Println("K held");
 }
 
 void Game::render()
 {
 	wnd.clear();
 
-	wnd.setView(sf::View(player.rect.getPosition(), { 1920, 1080 }));
+	NormalView = sf::View(player.rect.getPosition(), { 1920, 1080 });
+	
+	wnd.setView(NormalView);
 	level.render(wnd);
 	player.render(wnd);
 

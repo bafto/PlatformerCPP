@@ -1,6 +1,8 @@
 #include "../include/Input.h"
 #include <algorithm>
 
+#pragma warning (disable : 26812)
+
 Input::Input()
 {
 	Initialize();

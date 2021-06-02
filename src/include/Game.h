@@ -26,6 +26,8 @@ public:
 	void Reset(std::string levelPath);
 
 	int GetDifficulty() { return Difficulty; }
+	sf::View GetHUDView() { return HUDView; }
+	sf::View GetNormalView() { return NormalView; }
 
 private:
 	void updateEvents();
@@ -39,6 +41,8 @@ public:
 	Player player;
 	Level level;
 private:
+	sf::View HUDView, NormalView;
+
 	float DeltaTime;
 	sf::Clock DeltaClock;
 	int Difficulty;
