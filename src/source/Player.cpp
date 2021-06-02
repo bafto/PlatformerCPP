@@ -130,6 +130,32 @@ void Player::render(sf::RenderTarget& target)
 	target.draw(healthbaroutline);
 
 	target.setView(Game::GetInstance().GetNormalView());
+
+#ifdef _DEBUG
+	sf::CircleShape point;
+	point.setRadius(2);
+
+	point.setPosition(lastPosition);
+	point.setFillColor(sf::Color::Green);
+	target.draw(point);
+
+	point.setPosition(rect.getPosition() + velocity);
+	point.setFillColor(sf::Color::Blue);
+	target.draw(point);
+
+	for (unsigned int i = 0; i < trail.size(); i++)
+	{
+		point.setPosition(trail[i] + (rect.getSize() / 2.f));
+		point.setFillColor(sf::Color::Red);
+		target.draw(point);
+	}
+
+	sf::RectangleShape groundCheck;
+	groundCheck.setPosition(rect.getPosition() + sf::Vector2f(0.f, 2.f));
+	groundCheck.setSize(rect.getSize());
+	groundCheck.setFillColor(sf::Color(255, 255, 0, 127));
+	target.draw(groundCheck);
+#endif
 }
 
 void Player::Kill()
@@ -142,6 +168,7 @@ void Player::Kill()
 	if (deathtimer == 50)
 	{
 		//Game::GetInstance().gameMode = Game::GameMode::DeathScreen;
+		Game::GetInstance().Reset(Game::GetInstance().level.GetFilePath());
 		deathtimer = 0;
 	}
 }
