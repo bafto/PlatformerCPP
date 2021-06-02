@@ -36,12 +36,14 @@ void Input::update(sf::Event event)
 	{
 	case sf::Event::KeyPressed:
 		keyboardState[event.key.code].pressed = true;
+		keyboardState[event.key.code].down = true;
 		break;
 	case sf::Event::KeyReleased:
 		keyboardState[event.key.code].released = true;
 		break;
 	case sf::Event::MouseButtonPressed:
 		mouseState[event.mouseButton.button].pressed = true;
+		mouseState[event.mouseButton.button].down = true;
 		break;
 	case sf::Event::MouseButtonReleased:
 		mouseState[event.mouseButton.button].released = true;
@@ -56,12 +58,18 @@ void Input::finishUpdate(sf::RenderWindow const* wnd)
 	for (int i = 0; i < sf::Keyboard::Key::KeyCount; i++)
 	{
 		if (!keyboardState[i].released && (lastKeyboardState[i].pressed || lastKeyboardState[i].held))
+		{
 			keyboardState[i].held = true;
+			keyboardState[i].down = true;
+		}
 	}
 	for (int i = 0; i < sf::Mouse::Button::ButtonCount; i++)
 	{
 		if (!mouseState[i].released && (lastMouseState[i].pressed || lastMouseState[i].held))
+		{
 			mouseState[i].held = true;
+			mouseState[i].down = true;
+		}
 	}
 
 	mousePosWindow = sf::Mouse::getPosition(*wnd);

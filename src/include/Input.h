@@ -7,7 +7,7 @@ class Input
 public:
 	struct ButtonState
 	{
-		bool pressed = false, released = false, held = false;
+		bool pressed = false, released = false, held = false, down = false;
 	};
 public:
 	Input();
