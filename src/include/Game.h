@@ -4,6 +4,7 @@
 #include "LevelRelated/Level.h"
 #include "Delegate.h"
 #include "NonCopyable.h"
+#include "Input.h"
 
 class Game : public NonCopyable
 {
@@ -32,6 +33,8 @@ private:
 	void render();
 public:
 	sf::RenderWindow wnd;
+
+	Input input;
 
 	Player player;
 	Level level;

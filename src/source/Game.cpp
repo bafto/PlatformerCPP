@@ -11,6 +11,8 @@ Game::Game()
 {
 	Debug::Println("Instanciating Game");
 
+	wnd.setFramerateLimit(100);
+
 	Debug::Println("Done instanciating Game");
 }
 
@@ -21,6 +23,7 @@ void Game::Initialize()
 {
 	Debug::Println("Initializing Game");
 
+	input.Initialize();
 	level.Initialize("assets\\Levels\\level0.level");
 
 	Debug::Println("Done initializing");
@@ -44,6 +47,8 @@ void Game::run()
 
 void Game::updateEvents()
 {
+	input.clear();
+
 	sf::Event e;
 	while (wnd.pollEvent(e))
 	{
@@ -55,7 +60,11 @@ void Game::updateEvents()
 		default:
 			break;
 		}
+
+		input.update(e);
 	}
+
+	input.finishUpdate(&wnd);
 }
 
 void Game::update()
@@ -64,6 +73,19 @@ void Game::update()
 	
 	level.update(DeltaTime);
 	player.update(DeltaTime);
+
+	if (input.MouseState(sf::Mouse::Left).pressed)
+		Debug::Println("Left pressed");
+	if (input.KeyboardState(sf::Keyboard::K).pressed)
+		Debug::Println("K pressed");
+	if (input.MouseState(sf::Mouse::Left).released)
+		Debug::Println("Left released");
+	if (input.KeyboardState(sf::Keyboard::K).released)
+		Debug::Println("K released");
+	if (input.MouseState(sf::Mouse::Left).held)
+		Debug::Println("Left held");
+	if (input.KeyboardState(sf::Keyboard::K).held)
+		Debug::Println("K held");
 }
 
 void Game::render()
