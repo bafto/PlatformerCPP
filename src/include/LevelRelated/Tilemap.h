@@ -8,15 +8,13 @@ public:
 	Tile();
 	Tile(sf::Vector2f pos, int tileID, sf::Texture* tex = nullptr);
 
-	void updateTexture();
-	void render(sf::RenderTarget& target);
-
+	sf::Vector2f GetPosition();
 	int GetTileID() const;
 
 public:
 	static inline const sf::Vector2f TileSize = sf::Vector2f(50.f, 50.f);
 
-	sf::RectangleShape rect;
+	sf::FloatRect rect;
 	sf::Texture* texture;
 	bool inHitbox;
 
@@ -49,6 +47,9 @@ public:
 	std::vector<sf::FloatRect> hitboxes;
 
 private:
+	sf::RenderTexture renderTexture;
+	sf::Texture texture;
+	sf::RectangleShape surface;
 	TextureMap texMap;
 	int width, height;
 

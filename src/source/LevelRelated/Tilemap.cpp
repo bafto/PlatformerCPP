@@ -7,38 +7,28 @@ Tile::Tile()
     :
     TileID(0),
     texture(nullptr),
-    inHitbox(false)
+    inHitbox(false),
+    rect({ 0.f, 0.f }, TileSize)
 {
-    rect.setPosition({ 0, 0 });
-    rect.setSize(TileSize);
 }
 
 Tile::Tile(sf::Vector2f pos, int tileID, sf::Texture* tex)
 	:
 	TileID(tileID),
 	texture(tex),
-	inHitbox(false)
+	inHitbox(false),
+    rect(pos, TileSize)
 {
-	rect.setPosition(pos);
-	rect.setSize(TileSize);
-	if (tex)
-		rect.setTexture(tex);
 }
 
-void Tile::updateTexture() 
+sf::Vector2f Tile::GetPosition()
 {
-    if (texture)rect.setTexture(texture);
+    return sf::Vector2f(rect.left, rect.top);
 }
 
 int Tile::GetTileID() const
 {
     return TileID;
-}
-
-void Tile::render(sf::RenderTarget& target)
-{
-	if (TileID != 0)
-		target.draw(rect);
 }
 
 Tilemap::Tilemap()
@@ -79,6 +69,8 @@ void Tilemap::Initialize(const std::vector<std::string>& lines)
 			tiles[x][y] = Tile(WorldPos, tileID);
 		}
 	}
+    surface.setPosition({ 0.f, 0.f });
+    surface.setSize(GetPixelSize());
 	LoadTextures();
 	MakeHitboxes();
 }
@@ -189,13 +181,26 @@ void Tilemap::LoadTextures()
             }
         }
     }
+
+    renderTexture.create((unsigned int)width * Tile::TileSize.x, (unsigned int)height * Tile::TileSize.y);
+    renderTexture.clear();
+
+    sf::RectangleShape shape;
+    shape.setSize(Tile::TileSize);
+
     for (int y = 0; y < height; y++)
     {
         for (int x = 0; x < width; x++)
         {
-            tiles[x][y].updateTexture();
+            shape.setPosition(tiles[x][y].GetPosition());
+            shape.setTexture(tiles[x][y].texture);
+            renderTexture.draw(shape);
         }
     }
+
+    renderTexture.display();
+    texture = renderTexture.getTexture();
+    surface.setTexture(&texture);
 }
 
 void Tilemap::MakeHitboxes()
@@ -208,7 +213,7 @@ void Tilemap::MakeHitboxes()
             //check if it is solid, and if it isn't already involved in a Hitbox
             if (tiles[x][y].GetTileID() != 0 && !tiles[x][y].inHitbox)
             {
-                sf::FloatRect newHitbox = sf::FloatRect(tiles[x][y].rect.getPosition(), tiles[x][y].rect.getSize()); //this will become the finished hitbox
+                sf::FloatRect newHitbox = tiles[x][y].rect; //this will become the finished hitbox
                 tiles[x][y].inHitbox = true; //the tile will definitely be in a hitbox, even if it is alone
                 bool firstLoop = true, breaked = false; //temporary bools for later
                 int xEnd = 0; //the X-Coordinate to determine where the Hitbox will end
@@ -256,13 +261,8 @@ void Tilemap::MakeHitboxes()
 
 void Tilemap::render(sf::RenderTarget& target)
 {
-    for (int y = 0; y < height; y++)
-    {
-        for (int x = 0; x < width; x++)
-        {
-            tiles[x][y].render(target);
-        }
-    }
+    target.draw(surface);
+
 #ifdef _DEBUG
     sf::RectangleShape shape;
     shape.setFillColor(sf::Color::Transparent);
