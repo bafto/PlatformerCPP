@@ -35,7 +35,9 @@ public:
 
 	int GetDifficulty() { return Difficulty; }
 	sf::View GetHUDView() { return HUDView; }
-	sf::View GetNormalView() { return NormalView; }
+	sf::View GetGameView() { return GameView; }
+	const sf::Font& GetFont() { return font; }
+	void AddToHUDText(std::string text) { HUDText += "\n" + text; }
 
 private:
 	void updateEvents();
@@ -50,9 +52,17 @@ public:
 	Player player;
 	Level level;
 private:
-	sf::View HUDView, NormalView;
+	sf::View HUDView, GameView;
 
-	float DeltaTime;
+	float DeltaTime, frameTimer;
 	sf::Clock DeltaClock;
 	int Difficulty;
+	unsigned int frameCounter;
+
+private:
+	sf::Text FramerateText;
+	sf::Font font;
+	std::string frameRateStr;
+	std::string HUDText;
+
 };

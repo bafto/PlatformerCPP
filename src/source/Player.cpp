@@ -12,7 +12,7 @@ Player::Player()
 	maxJumpSpeed(10.f),
 	maxFallSpeed(15.f),
 	acceleration(0.5f),
-	drag(5.f),
+	drag(15.f),
 	jumpspeed(13.f),
 	health(5),
 	vulnerable(true),
@@ -76,6 +76,8 @@ void Player::update(const float& DeltaTime)
 				}
 			}
 		}
+
+		Game::GetInstance().AddToHUDText(ToString());
 	}
 }
 
@@ -94,16 +96,16 @@ void Player::HandleInput(const float& DeltaTime)
 		rect.setPosition(Game::GetInstance().input.MousePosWorld() - rect.getSize() / 2.f);
 #endif
 	if (Game::GetInstance().input.KeyboardState(sf::Keyboard::A).down)
-		velocity.x -= 10 * std::abs(velocity.x) * DeltaTime + acceleration;
+		velocity.x -= speed * std::abs(velocity.x) * DeltaTime + acceleration;
 	if (Game::GetInstance().input.KeyboardState(sf::Keyboard::D).down)
-		velocity.x += 10 * std::abs(velocity.x) * DeltaTime + acceleration;
+		velocity.x += speed * std::abs(velocity.x) * DeltaTime + acceleration;
 	if (grounded && Game::GetInstance().input.KeyboardState(sf::Keyboard::W).pressed)
 	{
 		velocity.y -= jumpspeed;
 		//onJump.play();
 	}
 
-	velocity.x -= velocity.x / 15.f;
+	velocity.x -= velocity.x / drag;
 
 	velocity = util::VecClamp(velocity, { -maxWalkSpeed, -maxJumpSpeed }, { maxWalkSpeed, maxFallSpeed });
 
@@ -129,7 +131,7 @@ void Player::render(sf::RenderTarget& target)
 	healthbaroutline.setPosition(healthbar.getPosition());
 	target.draw(healthbaroutline);
 
-	target.setView(Game::GetInstance().GetNormalView());
+	target.setView(Game::GetInstance().GetGameView());
 
 #ifdef _DEBUG
 	sf::CircleShape point;
@@ -171,4 +173,9 @@ void Player::Kill()
 		Game::GetInstance().Reset(Game::GetInstance().level.GetFilePath());
 		deathtimer = 0;
 	}
+}
+
+std::string Player::ToString()
+{
+	return "Position: " + util::VecToString(sf::Vector2i(rect.getPosition())) + " Velocity: " + util::VecToString(velocity);
 }

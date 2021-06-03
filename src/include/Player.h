@@ -14,6 +14,8 @@ public:
 
 	void Kill();
 
+	std::string ToString();
+
 protected:
 	virtual void HandleCollision() override;
 

@@ -8,12 +8,20 @@ Game::Game()
 	:
 	wnd(sf::VideoMode::getDesktopMode(), "PlatformerCPP"),
 	DeltaTime(0),
-	Difficulty(1),
-	gameMode(GameMode::InGame)
+	Difficulty(0),
+	gameMode(GameMode::InGame),
+	frameCounter(0),
+	frameTimer(0.f)
 {
 	Debug::Println("Instanciating Game");
 
 	wnd.setFramerateLimit(100);
+	if (!font.loadFromFile("assets\\Fonts\\arial.ttf"))
+		throw FILEEXCEPTION(std::string("assets\\Fonts\\arial.ttf"));
+	FramerateText.setFillColor(sf::Color::White);
+	FramerateText.setFont(font);
+	FramerateText.setPosition({ 10.f, 10.f });
+	FramerateText.setCharacterSize(18);
 
 	Debug::Println("Done instanciating Game");
 }
@@ -74,6 +82,15 @@ void Game::updateEvents()
 void Game::update()
 {
 	DeltaTime = DeltaClock.restart().asSeconds();
+	frameCounter++;
+	frameTimer += DeltaTime;
+	HUDText = frameRateStr;
+	if (frameTimer >= 0.25f)
+	{
+		frameTimer = 0.f;
+		frameRateStr = std::to_string((int)(1.f / DeltaTime));
+		frameCounter = 0;
+	}
 	
 	switch (gameMode)
 	{
@@ -101,11 +118,19 @@ void Game::render()
 		wnd.setView(HUDView);
 		break;
 	case Game::GameMode::InGame:
-		NormalView = sf::View(player.rect.getPosition(), { 1920, 1080 });
-		wnd.setView(NormalView);
+		GameView = sf::View(player.rect.getPosition(), { 1920, 1080 });
+		wnd.setView(GameView);
 
 		level.render(wnd);
 		player.render(wnd);
+
+		wnd.setView(HUDView);
+
+		//Draw Global HUD
+		FramerateText.setString(HUDText);
+		wnd.draw(FramerateText);
+
+		wnd.setView(GameView);
 		break;
 	case Game::GameMode::DeathScreen:
 		wnd.setView(HUDView);

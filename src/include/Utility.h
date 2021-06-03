@@ -54,5 +54,11 @@ namespace util
 		return vec / (T)VecLength(vec);
 	}
 
+	template<typename T>
+	std::string VecToString(sf::Vector2<T> vec)
+	{
+		return "x: " + std::to_string(vec.x) + ",y:" + std::to_string(vec.y);
+	}
+
 	std::vector<std::string> split(const std::string& txt, char ch);
 }
