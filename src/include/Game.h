@@ -51,6 +51,7 @@ public:
 	GameMode gameMode;
 	Player player;
 	Level level;
+
 private:
 	sf::View HUDView, GameView;
 

@@ -35,6 +35,7 @@ void Game::Initialize()
 	HUDView = sf::View(sf::FloatRect(0, 0, 1920, 1080));
 
 	input.Initialize();
+	player.Initialize();
 	level.Initialize("assets\\Levels\\level0.level");
 
 	Debug::Println("Done initializing");
@@ -147,5 +148,6 @@ void Game::render()
 void Game::Reset(std::string levelPath)
 {
 	player = Player();
+	player.Initialize();
 	level.Initialize(levelPath);
 }

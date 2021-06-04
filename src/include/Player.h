@@ -8,6 +8,8 @@ public:
 	Player();
 	virtual ~Player();
 
+	void Initialize();
+
 public:
 	virtual void update(const float& DeltaTime);
 	virtual void render(sf::RenderTarget& target) override;
@@ -36,5 +38,7 @@ private:
 	int deathtimer;
 	int maxHealth = 5;
 	sf::RectangleShape healthbar, healthbaroutline;
+	sf::SoundBuffer hitBuff, jumpBuff, deathBuff;
+	sf::Sound hitSound, jumpSound, deathSound;
 
 };

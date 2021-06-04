@@ -2,6 +2,7 @@
 #include "../include/Game.h"
 #include "../include/Debug.h"
 #include "../include/Utility.h"
+#include "../include/GameException.h"
 
 Player::Player()
 	:
@@ -39,6 +40,24 @@ Player::Player()
 Player::~Player()
 {}
 
+void Player::Initialize()
+{
+	Debug::Println("Initializing Player");
+
+	if (!hitBuff.loadFromFile("assets\\sounds\\explosion.wav"))
+		throw FILEEXCEPTION(std::string("assets\\sounds\\explosion.wav"));
+	if (!jumpBuff.loadFromFile("assets\\sounds\\jump.wav"))
+		throw FILEEXCEPTION(std::string("assets\\sounds\\jump.wav"));
+	if (!deathBuff.loadFromFile("assets\\sounds\\death.wav"))
+		throw FILEEXCEPTION(std::string("assets\\sounds\\death.wav"));
+
+	hitSound.setBuffer(hitBuff);
+	jumpSound.setBuffer(jumpBuff);
+	deathSound.setBuffer(deathBuff);
+
+	Debug::Println("Done initializing Player");
+}
+
 void Player::update(const float& DeltaTime)
 {
 	if (health <= 0 || dead == true)
@@ -69,7 +88,7 @@ void Player::update(const float& DeltaTime)
 					health -= e->GetDamage();
 					hitTimer = 0.f;
 					vulnerable = false;
-					//onHit.Play();
+					hitSound.play();
 				}
 			}
 		}
@@ -103,7 +122,7 @@ void Player::HandleInput(const float& DeltaTime)
 	if (grounded && Game::GetInstance().input.KeyboardState(sf::Keyboard::W).pressed)
 	{
 		velocity.y -= jumpspeed;
-		//onJump.play();
+		jumpSound.play();
 	}
 
 	velocity.x -= velocity.x / drag;
@@ -166,7 +185,7 @@ void Player::Kill()
 	if (deathtimer == 0)
 	{
 		dead = true;
-		//onDeath.Play();
+		deathSound.play();
 	}
 	if (deathtimer == 50)
 	{
