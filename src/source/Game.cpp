@@ -10,7 +10,9 @@ Game::Game()
 	DeltaTime(0),
 	Difficulty(1),
 	gameMode(GameMode::InGame),
-	frameTimer(0.f)
+	frameTimer(0.f),
+	freeze(false),
+	frameStep(false)
 {
 	Debug::Println("Instanciating Game");
 
@@ -100,8 +102,27 @@ void Game::update()
 	case Game::GameMode::MainMenu:
 		break;
 	case Game::GameMode::InGame:
-		player.update(DeltaTime);
-		level.update(DeltaTime);
+#ifdef _DEBUG
+		if (frameStep)
+			freeze = true;
+		if (input.KeyboardState(sf::Keyboard::F).pressed)
+		{
+			frameStep = true;
+			freeze = false;
+		}
+		if (input.KeyboardState(sf::Keyboard::G).pressed)
+		{
+			frameStep = false;
+			freeze = false;
+		}
+		if (!freeze)
+		{
+#endif
+			player.update(DeltaTime);
+			level.update(DeltaTime);
+#ifdef _DEBUG
+		}
+#endif
 		break;
 	case Game::GameMode::DeathScreen:
 		break;

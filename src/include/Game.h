@@ -53,6 +53,9 @@ public:
 	Level level;
 
 private:
+	bool frameStep, freeze;
+
+private:
 	sf::View HUDView, GameView;
 
 	float DeltaTime, frameTimer;
