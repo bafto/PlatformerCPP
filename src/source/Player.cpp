@@ -24,7 +24,7 @@ Player::Player()
 {
 	//override stuff from entity
 	color = sf::Color::Blue;
-	rect.setFillColor(sf::Color::Red);
+	rect.setFillColor(color);
 
 	healthbar.setFillColor(sf::Color::Red);
 
@@ -51,11 +51,8 @@ void Player::update(const float& DeltaTime)
 		lastDeath += DeltaTime;
 		hitTimer += DeltaTime;
 		vulnerable = hitTimer >= 1.f / Game::GetInstance().GetDifficulty();
-		color = vulnerable ? sf::Color::Red : sf::Color(255, 127, 80);
+		color = vulnerable ? sf::Color::Blue : sf::Color(255, 127, 80);
 		lastPosition = rect.getPosition();
-
-		if (!grounded)
-			velocity.y += Game::GetInstance().level.gravity * DeltaTime;
 
 		grounded = Game::GetInstance().level.tilemap.Collides(sf::FloatRect(rect.getPosition() + sf::Vector2f(0.f, 2.f), rect.getSize()));
 
@@ -77,7 +74,9 @@ void Player::update(const float& DeltaTime)
 			}
 		}
 
+#ifdef _DEBUG
 		Game::GetInstance().AddToHUDText(ToString());
+#endif
 	}
 }
 
@@ -99,6 +98,8 @@ void Player::HandleInput(const float& DeltaTime)
 		velocity.x -= speed * std::abs(velocity.x) * DeltaTime + acceleration;
 	if (Game::GetInstance().input.KeyboardState(sf::Keyboard::D).down)
 		velocity.x += speed * std::abs(velocity.x) * DeltaTime + acceleration;
+	if (!grounded)
+		velocity.y += Game::GetInstance().level.gravity * DeltaTime;
 	if (grounded && Game::GetInstance().input.KeyboardState(sf::Keyboard::W).pressed)
 	{
 		velocity.y -= jumpspeed;

@@ -10,6 +10,7 @@ PathEnemy::PathEnemy(sf::Vector2f pos, int Start, int Stop, float speed)
 {
 	this->speed = speed;
 	color = sf::Color(139, 0, 0);
+	rect.setFillColor(color);
 	Damage = 2;
 }
 

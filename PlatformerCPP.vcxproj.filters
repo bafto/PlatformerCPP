@@ -36,6 +36,33 @@
     <ClCompile Include="src\source\LevelRelated\Tilemap.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="src\source\LevelRelated\Enemies\Enemy.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\LevelRelated\Level.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\LevelRelated\EventTrigger.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\GameException.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\Input.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\LevelRelated\Enemies\CopyEnemy.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\LevelRelated\Enemies\SpinEnemy.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\LevelRelated\Enemies\TrackEnemy.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="src\source\LevelRelated\Enemies\PathEnemy.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\include\Game.h">
@@ -60,6 +87,39 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="src\include\LevelRelated\Tilemap.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\LevelRelated\Enemies\Enemy.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\LevelRelated\Level.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Delegate.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\LevelRelated\EventTrigger.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\NonCopyable.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\GameException.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\Input.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\LevelRelated\Enemies\CopyEnemy.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\LevelRelated\Enemies\SpinEnemy.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\LevelRelated\Enemies\TrackEnemy.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\LevelRelated\Enemies\PathEnemy.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

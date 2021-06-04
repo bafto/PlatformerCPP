@@ -8,9 +8,8 @@ Game::Game()
 	:
 	wnd(sf::VideoMode::getDesktopMode(), "PlatformerCPP"),
 	DeltaTime(0),
-	Difficulty(0),
+	Difficulty(1),
 	gameMode(GameMode::InGame),
-	frameCounter(0),
 	frameTimer(0.f)
 {
 	Debug::Println("Instanciating Game");
@@ -18,10 +17,10 @@ Game::Game()
 	wnd.setFramerateLimit(100);
 	if (!font.loadFromFile("assets\\Fonts\\arial.ttf"))
 		throw FILEEXCEPTION(std::string("assets\\Fonts\\arial.ttf"));
-	FramerateText.setFillColor(sf::Color::White);
-	FramerateText.setFont(font);
-	FramerateText.setPosition({ 10.f, 10.f });
-	FramerateText.setCharacterSize(18);
+	HUDText.setFillColor(sf::Color::White);
+	HUDText.setFont(font);
+	HUDText.setPosition({ 10.f, 10.f });
+	HUDText.setCharacterSize(18);
 
 	Debug::Println("Done instanciating Game");
 }
@@ -82,16 +81,19 @@ void Game::updateEvents()
 void Game::update()
 {
 	DeltaTime = DeltaClock.restart().asSeconds();
-	frameCounter++;
+#ifdef _DEBUG
 	frameTimer += DeltaTime;
-	HUDText = frameRateStr;
+	HUDStr = frameRateStr;
 	if (frameTimer >= 0.25f)
 	{
 		frameTimer = 0.f;
 		frameRateStr = std::to_string((int)(1.f / DeltaTime));
-		frameCounter = 0;
 	}
-	
+	AddToHUDText(std::to_string(DeltaTime));
+#else
+	HUDStr = "";
+#endif
+
 	switch (gameMode)
 	{
 	case Game::GameMode::MainMenu:
@@ -127,8 +129,8 @@ void Game::render()
 		wnd.setView(HUDView);
 
 		//Draw Global HUD
-		FramerateText.setString(HUDText);
-		wnd.draw(FramerateText);
+		HUDText.setString(HUDStr);
+		wnd.draw(HUDText);
 
 		wnd.setView(GameView);
 		break;

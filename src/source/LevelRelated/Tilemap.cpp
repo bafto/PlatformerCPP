@@ -182,7 +182,7 @@ void Tilemap::LoadTextures()
         }
     }
 
-    renderTexture.create((unsigned int)width * Tile::TileSize.x, (unsigned int)height * Tile::TileSize.y);
+    renderTexture.create((unsigned int)(width * Tile::TileSize.x), (unsigned int)(height * Tile::TileSize.y));
     renderTexture.clear();
 
     sf::RectangleShape shape;

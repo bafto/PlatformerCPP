@@ -9,6 +9,7 @@ TrackEnemy::TrackEnemy(sf::Vector2f pos, sf::Vector2f size, float speed)
 {
 	this->speed = speed;
 	color = sf::Color(205, 92, 92);
+	rect.setFillColor(color);
 }
 
 TrackEnemy::~TrackEnemy()

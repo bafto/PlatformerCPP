@@ -9,6 +9,7 @@ SpinEnemy::SpinEnemy(sf::Vector2f pos, float distToAnchor, float rotationSpeed)
 {
 	noGravity = true;
 	color = sf::Color::Yellow;
+	rect.setFillColor(color);
 	speed = rotationSpeed;
 }
 

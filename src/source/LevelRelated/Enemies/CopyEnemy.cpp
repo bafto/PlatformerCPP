@@ -8,6 +8,7 @@ CopyEnemy::CopyEnemy(sf::Vector2f pos, float dist)
 	distanceToPlayer(dist)
 {
 	color = sf::Color::Blue;
+	rect.setFillColor(color);
 	util::Clamp(distanceToPlayer, 1.1f, 60.f);
 }
 

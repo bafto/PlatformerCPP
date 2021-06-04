@@ -37,7 +37,7 @@ public:
 	sf::View GetHUDView() { return HUDView; }
 	sf::View GetGameView() { return GameView; }
 	const sf::Font& GetFont() { return font; }
-	void AddToHUDText(std::string text) { HUDText += "\n" + text; }
+	void AddToHUDText(std::string text) { HUDStr += "\n" + text; }
 
 private:
 	void updateEvents();
@@ -57,12 +57,11 @@ private:
 	float DeltaTime, frameTimer;
 	sf::Clock DeltaClock;
 	int Difficulty;
-	unsigned int frameCounter;
 
 private:
-	sf::Text FramerateText;
+	sf::Text HUDText;
 	sf::Font font;
 	std::string frameRateStr;
-	std::string HUDText;
+	std::string HUDStr;
 
 };

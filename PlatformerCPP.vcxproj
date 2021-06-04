@@ -161,6 +161,15 @@
   <ItemGroup>
     <ClCompile Include="src\source\Entity.cpp" />
     <ClCompile Include="src\source\Game.cpp" />
+    <ClCompile Include="src\source\GameException.cpp" />
+    <ClCompile Include="src\source\Input.cpp" />
+    <ClCompile Include="src\source\LevelRelated\Enemies\CopyEnemy.cpp" />
+    <ClCompile Include="src\source\LevelRelated\Enemies\Enemy.cpp" />
+    <ClCompile Include="src\source\LevelRelated\Enemies\PathEnemy.cpp" />
+    <ClCompile Include="src\source\LevelRelated\Enemies\SpinEnemy.cpp" />
+    <ClCompile Include="src\source\LevelRelated\Enemies\TrackEnemy.cpp" />
+    <ClCompile Include="src\source\LevelRelated\EventTrigger.cpp" />
+    <ClCompile Include="src\source\LevelRelated\Level.cpp" />
     <ClCompile Include="src\source\LevelRelated\TextureMap.cpp" />
     <ClCompile Include="src\source\LevelRelated\Tilemap.cpp" />
     <ClCompile Include="src\source\main.cpp" />
@@ -169,11 +178,22 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\include\Debug.h" />
+    <ClInclude Include="src\include\Delegate.h" />
     <ClInclude Include="src\include\Entity.h" />
     <ClInclude Include="src\include\Game.h" />
+    <ClInclude Include="src\include\GameException.h" />
     <ClInclude Include="src\include\GeneralIncludes.h" />
+    <ClInclude Include="src\include\Input.h" />
+    <ClInclude Include="src\include\LevelRelated\Enemies\CopyEnemy.h" />
+    <ClInclude Include="src\include\LevelRelated\Enemies\Enemy.h" />
+    <ClInclude Include="src\include\LevelRelated\Enemies\PathEnemy.h" />
+    <ClInclude Include="src\include\LevelRelated\Enemies\SpinEnemy.h" />
+    <ClInclude Include="src\include\LevelRelated\Enemies\TrackEnemy.h" />
+    <ClInclude Include="src\include\LevelRelated\EventTrigger.h" />
+    <ClInclude Include="src\include\LevelRelated\Level.h" />
     <ClInclude Include="src\include\LevelRelated\TextureMap.h" />
     <ClInclude Include="src\include\LevelRelated\Tilemap.h" />
+    <ClInclude Include="src\include\NonCopyable.h" />
     <ClInclude Include="src\include\Player.h" />
     <ClInclude Include="src\include\Utility.h" />
   </ItemGroup>
