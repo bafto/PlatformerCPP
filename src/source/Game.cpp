@@ -1,5 +1,6 @@
 #include "../include/Game.h"
 #include "../include/Debug.h"
+#include "../include/Utility.h"
 #include "../include/GameException.h"
 
 #pragma warning (disable : 26812)
@@ -8,7 +9,7 @@ Game::Game()
 	:
 	wnd(sf::VideoMode::getDesktopMode(), "PlatformerCPP"),
 	DeltaTime(0),
-	Difficulty(1),
+	Difficulty(0),
 	gameMode(GameMode::InGame),
 	frameTimer(0.f),
 	freeze(false),
@@ -142,7 +143,7 @@ void Game::render()
 		wnd.setView(HUDView);
 		break;
 	case Game::GameMode::InGame:
-		GameView = sf::View(player.rect.getPosition(), { 1920, 1080 });
+		GameView = sf::View(sf::FloatRect(util::VecClamp(player.rect.getPosition() - sf::Vector2f(960, 540), sf::Vector2f(0.f, 0.f), { level.tilemap.GetPixelSize() - sf::Vector2f(1920, 1080) }), sf::Vector2f(1920, 1080)));
 		wnd.setView(GameView);
 
 		level.render(wnd);
