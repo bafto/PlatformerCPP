@@ -5,7 +5,10 @@
 
 class UIElement
 {
+private:
+	friend class UIState;
 public:
+	UIElement();
 	UIElement(sf::FloatRect bounds);
 	virtual ~UIElement();
 
@@ -21,6 +24,8 @@ public:
 
 	sf::Vector2f GetRelativePosition();
 	sf::Vector2f GetAbsolutePosition();
+
+	void Recalculate();
 
 protected:
 	sf::RectangleShape rect;
