@@ -6,7 +6,10 @@ UIElement::UIElement(sf::FloatRect bounds, UIElement* parent)
 	:
 	parent(parent)
 {
-	rect.setPosition(bounds.left, bounds.top);
+	if (parent != nullptr)
+		rect.setPosition(parent->rect.getPosition() + sf::Vector2f(bounds.left, bounds.top));
+	else
+		rect.setPosition(bounds.left, bounds.top);
 	rect.setSize(sf::Vector2f(bounds.width, bounds.height));
 	rect.setFillColor(sf::Color::Transparent);
 }
