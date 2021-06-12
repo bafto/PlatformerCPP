@@ -5,6 +5,7 @@
 #include "Delegate.h"
 #include "NonCopyable.h"
 #include "Input.h"
+#include "UI/UIStates/TestState.h"
 
 class Game : public NonCopyable
 {
@@ -67,5 +68,8 @@ private:
 	sf::Font font;
 	std::string frameRateStr;
 	std::string HUDStr;
+
+private:
+	TestState testState;
 
 };

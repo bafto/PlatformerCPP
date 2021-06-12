@@ -10,7 +10,7 @@ Game::Game()
 	wnd(sf::VideoMode::getDesktopMode(), "PlatformerCPP"),
 	DeltaTime(0),
 	Difficulty(0),
-	gameMode(GameMode::InGame),
+	gameMode(GameMode::MainMenu),
 	frameTimer(0.f),
 	freeze(false),
 	frameStep(false)
@@ -101,6 +101,7 @@ void Game::update()
 	switch (gameMode)
 	{
 	case Game::GameMode::MainMenu:
+		testState.update(DeltaTime);
 		break;
 	case Game::GameMode::InGame:
 #ifdef _DEBUG
@@ -143,7 +144,7 @@ void Game::render()
 	switch (gameMode)
 	{
 	case Game::GameMode::MainMenu:
-		wnd.setView(HUDView);
+		testState.render(wnd);
 		break;
 	case Game::GameMode::InGame:
 		GameView = sf::View(sf::FloatRect(util::VecClamp(player.rect.getPosition() - sf::Vector2f(960, 540), sf::Vector2f(0.f, 0.f), { level.tilemap.GetPixelSize() - sf::Vector2f(1920, 1080) }), sf::Vector2f(1920, 1080)));
