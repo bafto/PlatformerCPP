@@ -14,7 +14,7 @@ UIState::~UIState()
 void UIState::Initialize()
 {
 	for (auto& e : elements)
-		e->Recalculate();
+		e->Initialize();
 }
 
 void UIState::update(const float& DeltaTime)

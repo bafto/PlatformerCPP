@@ -2,8 +2,9 @@
 
 #include "../GeneralIncludes.h"
 #include "../Delegate.h"
+#include "../NonCopyable.h"
 
-class UIElement
+class UIElement : public NonCopyable
 {
 private:
 	friend class UIState;
@@ -11,6 +12,8 @@ public:
 	UIElement();
 	UIElement(sf::FloatRect bounds);
 	virtual ~UIElement();
+
+	virtual void Initialize();
 
 	virtual void update(const float& DeltaTime);
 	virtual void render(sf::RenderTarget& target);

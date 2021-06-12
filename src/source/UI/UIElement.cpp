@@ -25,6 +25,13 @@ UIElement::~UIElement()
 
 }
 
+void UIElement::Initialize()
+{
+	Recalculate();
+	for (auto& c : children)
+		c->Initialize();
+}
+
 void UIElement::update(const float& DeltaTime)
 {
 	for (auto& c : children)

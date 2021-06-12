@@ -2,7 +2,7 @@
 
 #include "UIElement.h"
 
-class UIState
+class UIState : public NonCopyable
 {
 public:
 	UIState();
