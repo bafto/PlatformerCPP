@@ -33,8 +33,13 @@ protected:
 	UIElement* parent;
 
 public:
+	Delegate<void(UIElement* element)> OnMouseEnter;
+	Delegate<void(UIElement* element)> OnMouseExit;
 	Delegate<void(UIElement* element)> OnHover;
 	Delegate<void(UIElement* element)> OnClick;
 	Delegate<void(UIElement* element)> OnRelease;
 	Delegate<void(UIElement* element)> OnHold;
+
+private:
+	bool mouseHovered = false;
 };

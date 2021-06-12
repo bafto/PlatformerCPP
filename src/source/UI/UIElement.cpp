@@ -31,13 +31,25 @@ void UIElement::update(const float& DeltaTime)
 		c->update(DeltaTime);
 	if (util::ShapeVecIntersect(rect, sf::Vector2f(Game::GetInstance().input.MousePosWindow())))
 	{
-		OnHover(this);
+		if (!mouseHovered)
+			OnMouseEnter(this);
+		else if (mouseHovered)
+			OnHover(this);
 		if (Game::GetInstance().input.MouseState(sf::Mouse::Left).pressed)
 			OnClick(this);
 		else if (Game::GetInstance().input.MouseState(sf::Mouse::Left).released)
 			OnRelease(this);
 		else if (Game::GetInstance().input.MouseState(sf::Mouse::Left).held)
 			OnHold(this);
+
+		mouseHovered = true;
+	}
+	else
+	{
+		if (mouseHovered)
+			OnMouseExit(this);
+
+		mouseHovered = false;
 	}
 }
 
