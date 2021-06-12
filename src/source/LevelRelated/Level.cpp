@@ -96,10 +96,21 @@ void Level::InitializeEvents()
 		);
 
 		EventTrigger& lastTrigger = EventTriggers[EventTriggers.size() - 1];
-		if (lastTrigger.eventType == EventTrigger::EventID::LevelLoader)
+		switch (lastTrigger.eventType)
 		{
+		case EventTrigger::EventID::LevelLoader:
 			lastTrigger.nextLevel = "assets\\Levels\\" + evtLine[5];
-			lastTrigger.OnPlayerInside += [&](Player& player) { Game::GetInstance().Reset(lastTrigger.nextLevel); };
+			lastTrigger.OnPlayerInside += [&](EventTrigger& evt, Player&)
+			{ 
+				Game::GetInstance().Reset(evt.nextLevel);
+			};
+			break;
+		case EventTrigger::EventID::GravityFlip:
+			lastTrigger.OnPlayerEnter += [&](EventTrigger&, Player& player) { player.gravityIndicator = -player.gravityIndicator; };
+			lastTrigger.OnPlayerExit += [&](EventTrigger&, Player& player) { player.gravityIndicator = -player.gravityIndicator; };
+			break;
+		default:
+			break;
 		}
 	}
 }

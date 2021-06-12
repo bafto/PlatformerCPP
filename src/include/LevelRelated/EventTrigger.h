@@ -8,7 +8,8 @@ class EventTrigger
 public:
 	enum class EventID
 	{
-		LevelLoader = 0
+		LevelLoader = 0,
+		GravityFlip
 	};
 
 public:
@@ -22,7 +23,7 @@ public:
 	EventID eventType;
 	std::string nextLevel;
 
-	Delegate<void(Player& player)> OnPlayerInside;
-	Delegate<void(Player& player)> OnPlayerEnter;
-	Delegate<void(Player& player)> OnPlayerExit;
+	Delegate<void(EventTrigger& evt, Player& player)> OnPlayerInside;
+	Delegate<void(EventTrigger& evt, Player& player)> OnPlayerEnter;
+	Delegate<void(EventTrigger& evt, Player& player)> OnPlayerExit;
 };

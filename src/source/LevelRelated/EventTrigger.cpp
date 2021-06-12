@@ -16,15 +16,15 @@ void EventTrigger::update(const float& DeltaTime)
 	sf::FloatRect lastPlayerRect = sf::FloatRect(Game::GetInstance().player.lastPosition, { 50.f, 50.f });
     if (util::ShapeRectIntersect(Game::GetInstance().player.rect, bounds))
     {
-        OnPlayerInside(Game::GetInstance().player);
+        OnPlayerInside(*this, Game::GetInstance().player);
     }
     if (util::ShapeRectIntersect(Game::GetInstance().player.rect, bounds) && !lastPlayerRect.intersects(bounds))
     {
-        OnPlayerEnter(Game::GetInstance().player);
+        OnPlayerEnter(*this, Game::GetInstance().player);
     }
     if (!util::ShapeRectIntersect(Game::GetInstance().player.rect, bounds) && lastPlayerRect.intersects(bounds))
     {
-        OnPlayerExit(Game::GetInstance().player);
+        OnPlayerExit(*this, Game::GetInstance().player);
     }
 }
 

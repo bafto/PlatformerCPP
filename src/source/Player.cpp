@@ -21,7 +21,8 @@ Player::Player()
 	deathtimer(0),
 	dead(false),
 	grounded(false),
-	lastDeath(0)
+	lastDeath(0),
+	gravityIndicator(1.f)
 {
 	//override stuff from entity
 	color = sf::Color::Blue;
@@ -73,7 +74,7 @@ void Player::update(const float& DeltaTime)
 		color = vulnerable ? sf::Color::Blue : sf::Color(255, 127, 80);
 		lastPosition = rect.getPosition();
 
-		grounded = Game::GetInstance().level.tilemap.Collides(sf::FloatRect(rect.getPosition() + sf::Vector2f(0.f, 2.f), rect.getSize()));
+		grounded = Game::GetInstance().level.tilemap.Collides(sf::FloatRect(rect.getPosition() + sf::Vector2f(0.f, 2.f * gravityIndicator), rect.getSize()));
 
 		HandleInput(DeltaTime);
 
@@ -92,10 +93,6 @@ void Player::update(const float& DeltaTime)
 				}
 			}
 		}
-
-#ifdef _DEBUG
-		Game::GetInstance().AddToHUDText(ToString());
-#endif
 	}
 }
 
@@ -118,10 +115,10 @@ void Player::HandleInput(const float& DeltaTime)
 	if (Game::GetInstance().input.KeyboardState(sf::Keyboard::D).down)
 		velocity.x += speed * std::abs(velocity.x) * DeltaTime + acceleration;
 	if (!grounded)
-		velocity.y += Game::GetInstance().level.gravity * DeltaTime;
+		velocity.y += Game::GetInstance().level.gravity * gravityIndicator * DeltaTime;
 	if (grounded && Game::GetInstance().input.KeyboardState(sf::Keyboard::W).pressed)
 	{
-		velocity.y -= jumpspeed;
+		velocity.y -= jumpspeed * gravityIndicator;
 		jumpSound.play();
 	}
 

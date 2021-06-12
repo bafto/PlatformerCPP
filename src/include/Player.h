@@ -28,11 +28,11 @@ public:
 	sf::Vector2f lastPosition;
 	int health;
 	bool vulnerable, dead;
-	float lastDeath;
+	float lastDeath, gravityIndicator;
 	std::vector<sf::Vector2f> trail;
 
 private:
-	float speed, drag, acceleration, jumpspeed, maxJumpSpeed, maxFallSpeed, maxWalkSpeed;
+	float speed, drag, acceleration, maxJumpSpeed, maxFallSpeed, maxWalkSpeed, jumpspeed;
 	bool grounded;
 	float hitTimer;
 	int deathtimer;

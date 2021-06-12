@@ -124,6 +124,9 @@ void Game::update()
 #ifdef _DEBUG
 		}
 #endif
+#ifdef _DEBUG
+		AddToHUDText(player.ToString());
+#endif
 		break;
 	case Game::GameMode::DeathScreen:
 		break;
