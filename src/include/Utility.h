@@ -6,6 +6,7 @@ namespace util
 {
 	bool RectIntersect(const sf::FloatRect& rect, const sf::FloatRect& other);
 	bool ShapeIntersect(const sf::RectangleShape& rect, const sf::RectangleShape& other);
+	bool ShapeVecIntersect(const sf::RectangleShape& rect, const sf::Vector2f& vec);
 	bool ShapeRectIntersect(const sf::RectangleShape& rect, const sf::FloatRect& other);
 
 	template<typename T>

@@ -18,6 +18,11 @@ namespace util
 			rectPosition.y + rectSize.y > otherPosition.y && rectPosition.y < otherPosition.y + otherSize.y;
 	}
 
+	bool ShapeVecIntersect(const sf::RectangleShape& rect, const sf::Vector2f& vec)
+	{
+		return sf::FloatRect(rect.getPosition(), rect.getSize()).contains(vec);
+	}
+
 	bool ShapeRectIntersect(const sf::RectangleShape& rect, const sf::FloatRect& other)
 	{
 		return other.intersects({ rect.getPosition(), rect.getSize() });
