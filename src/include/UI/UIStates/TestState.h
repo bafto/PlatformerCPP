@@ -1,7 +1,8 @@
 #pragma once
 
 #include "../UIState.h"
-#include "../UIElements/UIButton.h"
+#include "../UIElements/UIPanel.h"
+#include "../UIElements/UIText.h"
 
 class TestState : public UIState
 {
@@ -10,6 +11,7 @@ public:
 	virtual ~TestState();
 
 private:
-	UIButton btn;
+	UIPanel btn;
+	UIText text;
 
 };

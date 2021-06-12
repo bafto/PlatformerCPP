@@ -37,6 +37,7 @@ void Game::Initialize()
 
 	HUDView = sf::View(sf::FloatRect(0, 0, 1920, 1080));
 
+	testState.Initialize();
 	input.Initialize();
 	player.Initialize();
 	level.Initialize("assets\\Levels\\level0.level");
