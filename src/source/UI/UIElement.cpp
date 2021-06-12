@@ -2,14 +2,11 @@
 #include "../../include/Game.h"
 #include "../../include/Utility.h"
 
-UIElement::UIElement(sf::FloatRect bounds, UIElement* parent)
+UIElement::UIElement(sf::FloatRect bounds)
 	:
-	parent(parent)
+	parent(nullptr)
 {
-	if (parent != nullptr)
-		rect.setPosition(parent->rect.getPosition() + sf::Vector2f(bounds.left, bounds.top));
-	else
-		rect.setPosition(bounds.left, bounds.top);
+	rect.setPosition(bounds.left, bounds.top);
 	rect.setSize(sf::Vector2f(bounds.width, bounds.height));
 	rect.setFillColor(sf::Color::Transparent);
 }
@@ -40,4 +37,55 @@ void UIElement::render(sf::RenderTarget& target)
 	target.draw(rect);
 	for (auto& c : children)
 		c->render(target);
+}
+
+void UIElement::Append(UIElement* element)
+{
+	children.push_back(element);
+	element->parent = this;
+	element->SetRelativePosition(element->GetRelativePosition());
+}
+
+void UIElement::Remove(UIElement* element)
+{
+	for (size_t i = 0; i < children.size(); i++)
+	{
+		if (children[i] == element)
+		{
+			element->parent = nullptr;
+			children.erase(children.begin() + i);
+			break;
+		}
+	}
+}
+
+void UIElement::Remove(size_t index)
+{
+	if (index < children.size())
+	{
+		children[index]->parent = nullptr;
+		children.erase(children.begin() + index);
+	}
+}
+
+void UIElement::SetRelativePosition(sf::Vector2f pos)
+{
+	rect.setPosition(parent->rect.getPosition() + pos);
+}
+
+void UIElement::SetAbsolutePosition(sf::Vector2f pos)
+{
+	rect.setPosition(pos);
+}
+
+sf::Vector2f UIElement::GetRelativePosition()
+{
+	if (parent != nullptr)
+		return rect.getPosition() - parent->GetAbsolutePosition();
+	return GetAbsolutePosition();
+}
+
+sf::Vector2f UIElement::GetAbsolutePosition()
+{
+	return rect.getPosition();
 }
