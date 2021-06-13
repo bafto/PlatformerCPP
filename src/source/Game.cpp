@@ -3,8 +3,6 @@
 #include "../include/Utility.h"
 #include "../include/GameException.h"
 
-#include <Windows.h>
-
 #pragma warning (disable : 26812)
 
 Game::Game()
@@ -42,8 +40,8 @@ void Game::Initialize()
 	//testState.Initialize();
 	mainMenu.Initialize();
 	input.Initialize();
-	player.Initialize();
-	level.Initialize("assets\\Levels\\level0.level");
+	/*player.Initialize();
+	level.Initialize("assets\\Levels\\level0.level");*/
 
 	Debug::Println("Done initializing");
 }
@@ -186,4 +184,5 @@ void Game::Reset(std::string levelPath)
 	player = Player();
 	player.Initialize();
 	level.Initialize(levelPath);
+	gameMode = GameMode::InGame;
 }

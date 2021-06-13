@@ -17,7 +17,7 @@ public:
 	void Remove(UIElement* element);
 	void Remove(size_t index);
 
-private:
+protected:
 	std::vector<UIElement*> elements;
 
 };

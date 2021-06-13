@@ -16,4 +16,8 @@ private:
 	UIText Headline;
 	UIButton NewGame, LoadLevel, Quit;
 
+	UIPanel ChooseDifficulty;
+	UIText Headline2;
+	UIButton Difficulty1, Difficulty2, Difficulty3, Back;
+
 };

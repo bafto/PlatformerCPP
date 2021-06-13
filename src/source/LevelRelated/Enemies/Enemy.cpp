@@ -7,7 +7,7 @@ Enemy::Enemy(sf::Vector2f pos)
 	Entity(),
 	startPosition(pos),
 	speed(25.f),
-	Damage(1/*Game::GetInstance().GetDifficulty()*/)
+	Damage(Game::GetInstance().Difficulty)
 {
 	color = sf::Color::Red;
 	rect.setFillColor(color);

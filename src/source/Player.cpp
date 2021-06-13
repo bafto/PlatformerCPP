@@ -70,7 +70,7 @@ void Player::update(const float& DeltaTime)
 	{
 		lastDeath += DeltaTime;
 		hitTimer += DeltaTime;
-		vulnerable = hitTimer >= 1.f / Game::GetInstance().GetDifficulty();
+		vulnerable = hitTimer >= 1.f / Game::GetInstance().Difficulty;
 		color = vulnerable ? sf::Color::Blue : sf::Color(255, 127, 80);
 		lastPosition = rect.getPosition();
 

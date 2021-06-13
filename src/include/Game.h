@@ -35,7 +35,6 @@ public:
 public:
 	void Reset(std::string levelPath);
 
-	int GetDifficulty() { return Difficulty; }
 	sf::View GetHUDView() { return HUDView; }
 	sf::View GetGameView() { return GameView; }
 	const sf::Font& GetFont() { return font; }
@@ -54,6 +53,8 @@ public:
 	Player player;
 	Level level;
 
+	int Difficulty;
+
 private:
 	bool frameStep, freeze;
 
@@ -62,7 +63,6 @@ private:
 
 	float DeltaTime, frameTimer;
 	sf::Clock DeltaClock;
-	int Difficulty;
 
 private:
 	sf::Text HUDText;

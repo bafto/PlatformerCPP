@@ -18,6 +18,8 @@ public:
 	void SetClickColor(sf::Color color);
 	void SetCharacterSize(unsigned int size);
 
+	static sf::FloatRect StandardBounds() { return sf::FloatRect(0.f, 0.f, 100.f, 50.f); };
+
 private:
 	UIText text;
 	sf::Color hoverColor, clickColor;
