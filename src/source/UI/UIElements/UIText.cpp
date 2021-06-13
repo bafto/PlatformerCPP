@@ -5,10 +5,6 @@ UIText::UIText(sf::Vector2f pos)
 	:
 	UIElement(sf::FloatRect(pos, { 0.f, 0.f }))
 {
-	drawText.setPosition(rect.getPosition());
-	drawText.setFillColor(sf::Color::White);
-	drawText.setCharacterSize(18);
-	drawText.setString("");
 }
 
 UIText::~UIText()
@@ -18,6 +14,10 @@ UIText::~UIText()
 
 void UIText::Initialize()
 {
+	drawText.setPosition(rect.getPosition());
+	drawText.setFillColor(sf::Color::White);
+	drawText.setCharacterSize(18);
+	drawText.setString("");
 	drawText.setFont(Game::GetInstance().GetFont());
 	UIElement::Initialize();
 }

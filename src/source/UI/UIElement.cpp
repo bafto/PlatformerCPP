@@ -114,9 +114,9 @@ void UIElement::SetRelativePosition(sf::Vector2f pos)
 {
 	relativePosition = pos;
 	if (parent != nullptr)
-		SetAbsolutePosition(relativePosition);
-	else
 		SetAbsolutePosition(parent->GetAbsolutePosition() + relativePosition);
+	else
+		SetAbsolutePosition(relativePosition);
 }
 
 void UIElement::SetAbsolutePosition(sf::Vector2f pos)

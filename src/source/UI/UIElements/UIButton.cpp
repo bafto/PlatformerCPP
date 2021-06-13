@@ -5,22 +5,7 @@ UIButton::UIButton(sf::FloatRect bounds)
 	UIPanel(bounds),
 	text(sf::Vector2f(bounds.left, bounds.top))
 {
-	rect.setFillColor(sf::Color::Black);
-	rect.setOutlineThickness(0);
-
-	text.SetColor(sf::Color::White);
-	text.SetCharacterSize(18);
 	Append(&text);
-
-	sf::FloatRect textRect = text.GetLocalBounds();
-	text.SetRelativePosition(rect.getSize() / 2.f - sf::Vector2f(textRect.left + textRect.width / 2.f, textRect.top + textRect.height / 2.f));
-
-	OnMouseEnter += [&](UIElement*) { rect.setOutlineThickness(1); };
-	OnClick += [&](UIElement*) { rect.setOutlineColor(clickColor); };
-	OnHold += [&](UIElement*) { rect.setOutlineColor(clickColor); };
-	OnRelease += [&](UIElement*) { rect.setOutlineColor(hoverColor); };
-	OnHover += [&](UIElement*) { rect.setOutlineColor(hoverColor); };
-	OnMouseExit += [&](UIElement*) { rect.setOutlineThickness(0); };
 }
 
 UIButton::~UIButton()
@@ -32,13 +17,29 @@ void UIButton::Initialize()
 {
 	UIPanel::Initialize();
 	text.Initialize();
+
+	rect.setFillColor(sf::Color::Black);
+	rect.setOutlineThickness(0);
+
+	text.SetColor(sf::Color::White);
+	text.SetCharacterSize(18);
+
+	sf::FloatRect textRect = text.GetLocalBounds();
+	text.SetRelativePosition(rect.getSize() / 2.f - sf::Vector2f(textRect.width / 2.f, textRect.height / 2.f));
+
+	OnMouseEnter += [&](UIElement*) { rect.setOutlineThickness(1); };
+	OnClick += [&](UIElement*) { rect.setOutlineColor(clickColor); };
+	OnHold += [&](UIElement*) { rect.setOutlineColor(clickColor); };
+	OnRelease += [&](UIElement*) { rect.setOutlineColor(hoverColor); };
+	OnHover += [&](UIElement*) { rect.setOutlineColor(hoverColor); };
+	OnMouseExit += [&](UIElement*) { rect.setOutlineThickness(0); };
 }
 
 void UIButton::SetString(std::string str)
 {
 	text.SetString(str);
 	sf::FloatRect textRect = text.GetLocalBounds();
-	text.SetRelativePosition((rect.getSize() / 2.f) - sf::Vector2f(textRect.left + textRect.width / 2.f, textRect.top + textRect.height / 2.f));
+	text.SetRelativePosition((rect.getSize() / 2.f) - sf::Vector2f(textRect.width / 2.f, textRect.height / 2.f));
 }
 
 void UIButton::SetTextColor(sf::Color color)
