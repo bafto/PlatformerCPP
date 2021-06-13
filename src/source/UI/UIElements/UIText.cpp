@@ -27,7 +27,13 @@ void UIText::render(sf::RenderTarget& target)
 	target.draw(drawText);
 	UIElement::render(target);
 }
-	 
+
+void UIText::SetAbsolutePosition(sf::Vector2f pos)
+{
+	UIElement::SetAbsolutePosition(pos);
+	drawText.setPosition(pos);
+}
+
 void UIText::SetString(std::string str)
 {
 	drawText.setString(str);
@@ -48,7 +54,7 @@ std::string UIText::GetString()
 	return drawText.getString();
 }
 
-sf::FloatRect UIText::GetBounds()
+sf::FloatRect UIText::GetLocalBounds()
 {
-	return drawText.getGlobalBounds();
+	return drawText.getLocalBounds();
 }

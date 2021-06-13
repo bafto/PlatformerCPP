@@ -4,15 +4,19 @@
 TestState::TestState()
 	:
 	UIState(),
-	btn(sf::FloatRect(100.f, 100.f, 100.f, 40.f)),
-	text(sf::Vector2f(100.f, 100.f))
+	panel(sf::FloatRect(200.f, 200.f, 400.f, 400.f)),
+	btn(sf::FloatRect(50.f, 50.f, 100.f, 40.f))
 {
-	btn.OnClick += [&](UIElement*) { Game::GetInstance().gameMode = Game::GameMode::InGame; };
-	btn.SetColor(sf::Color::Blue);
-	Append(&btn);
+	panel.SetColor(sf::Color::Blue);
+	
+	btn.SetColor(sf::Color(128, 128, 128));
+	btn.SetHoverColor(sf::Color::White);
+	btn.SetClickColor(sf::Color::Black);
+	btn.SetTextColor(sf::Color::White);
+	btn.SetString("Click me!");
 
-	text.SetString("Hello World");
-	Append(&text);
+	panel.Append(&btn);
+	Append(&panel);
 }
 
 TestState::~TestState()

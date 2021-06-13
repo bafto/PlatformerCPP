@@ -12,12 +12,14 @@ public:
 
 	virtual void render(sf::RenderTarget& target);
 
+	virtual void SetAbsolutePosition(sf::Vector2f pos) override;
+
 	void SetString(std::string str);
 	void SetColor(sf::Color color);
 	void SetCharacterSize(unsigned int size);
 
 	std::string GetString();
-	sf::FloatRect GetBounds();
+	sf::FloatRect GetLocalBounds();
 	
 private:
 	sf::Text drawText;
