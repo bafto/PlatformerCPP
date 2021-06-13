@@ -4,7 +4,8 @@
 
 UIElement::UIElement()
 	:
-	parent(nullptr)
+	parent(nullptr),
+	relativePosition(0.f, 0.f)
 {
 	rect.setPosition(0.f, 0.f);
 	rect.setSize(sf::Vector2f(0.f, 0.f));
@@ -13,9 +14,10 @@ UIElement::UIElement()
 
 UIElement::UIElement(sf::FloatRect bounds)
 	:
-	parent(nullptr)
+	parent(nullptr),
+	relativePosition(bounds.left, bounds.top)
 {
-	rect.setPosition(bounds.left, bounds.top);
+	rect.setPosition(relativePosition);
 	rect.setSize(sf::Vector2f(bounds.width, bounds.height));
 	rect.setFillColor(sf::Color::Transparent);
 }
@@ -100,29 +102,33 @@ void UIElement::Remove(size_t index)
 
 void UIElement::Recalculate()
 {
-	SetRelativePosition(GetRelativePosition());
+	if (parent != nullptr)
+		SetAbsolutePosition(parent->GetAbsolutePosition() + relativePosition);
+	else
+		SetAbsolutePosition(relativePosition);
 	for (auto& c : children)
 		c->Recalculate();
 }
 
 void UIElement::SetRelativePosition(sf::Vector2f pos)
 {
+	relativePosition = pos;
 	if (parent != nullptr)
-		rect.setPosition(parent->rect.getPosition() + pos);
+		SetAbsolutePosition(relativePosition);
 	else
-		SetAbsolutePosition(pos);
+		SetAbsolutePosition(parent->GetAbsolutePosition() + relativePosition);
 }
 
 void UIElement::SetAbsolutePosition(sf::Vector2f pos)
 {
 	rect.setPosition(pos);
+	for (auto& c : children)
+		c->SetRelativePosition(c->GetRelativePosition());
 }
 
 sf::Vector2f UIElement::GetRelativePosition()
 {
-	if (parent != nullptr)
-		return rect.getPosition() - parent->GetAbsolutePosition();
-	return GetAbsolutePosition();
+	return relativePosition;
 }
 
 sf::Vector2f UIElement::GetAbsolutePosition()

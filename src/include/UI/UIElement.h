@@ -22,8 +22,8 @@ public:
 	void Remove(UIElement* element);
 	void Remove(size_t index);
 
-	void SetRelativePosition(sf::Vector2f pos);
-	void SetAbsolutePosition(sf::Vector2f pos);
+	virtual void SetRelativePosition(sf::Vector2f pos);
+	virtual void SetAbsolutePosition(sf::Vector2f pos);
 
 	sf::Vector2f GetRelativePosition();
 	sf::Vector2f GetAbsolutePosition();
@@ -44,5 +44,6 @@ public:
 	Delegate<void(UIElement* element)> OnHold;
 
 private:
+	sf::Vector2f relativePosition;
 	bool mouseHovered = false;
 };
