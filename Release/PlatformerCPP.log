@@ -9,9 +9,15 @@
   main.cpp
   Player.cpp
   UIElement.cpp
+  UIButton.cpp
+  UIText.cpp
+  UIState.cpp
+  DeathScreen.cpp
+  MainMenu.cpp
+  TestState.cpp
   Code wird generiert.
-  181 of 1041 functions (17.4%) were compiled, the rest were copied from previous compilation.
-    129 functions were new in current compilation
-    40 functions had inline decision re-evaluated but remain unchanged
+  562 of 1516 functions (37.1%) were compiled, the rest were copied from previous compilation.
+    151 functions were new in current compilation
+    207 functions had inline decision re-evaluated but remain unchanged
   Codegenerierung ist abgeschlossen.
   PlatformerCPP.vcxproj -> C:\Users\Hendrik\source\repos\PlatformerCPP\Release\PlatformerCPP.exe

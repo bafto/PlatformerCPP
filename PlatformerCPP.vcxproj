@@ -174,6 +174,14 @@
     <ClCompile Include="src\source\LevelRelated\Tilemap.cpp" />
     <ClCompile Include="src\source\main.cpp" />
     <ClCompile Include="src\source\Player.cpp" />
+    <ClCompile Include="src\source\UI\UIElement.cpp" />
+    <ClCompile Include="src\source\UI\UIElements\UIButton.cpp" />
+    <ClCompile Include="src\source\UI\UIElements\UIPanel.cpp" />
+    <ClCompile Include="src\source\UI\UIElements\UIText.cpp" />
+    <ClCompile Include="src\source\UI\UIState.cpp" />
+    <ClCompile Include="src\source\UI\UIStates\DeathScreen.cpp" />
+    <ClCompile Include="src\source\UI\UIStates\MainMenu.cpp" />
+    <ClCompile Include="src\source\UI\UIStates\TestState.cpp" />
     <ClCompile Include="src\source\Utility.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -195,6 +203,14 @@
     <ClInclude Include="src\include\LevelRelated\Tilemap.h" />
     <ClInclude Include="src\include\NonCopyable.h" />
     <ClInclude Include="src\include\Player.h" />
+    <ClInclude Include="src\include\UI\UIElement.h" />
+    <ClInclude Include="src\include\UI\UIElements\UIButton.h" />
+    <ClInclude Include="src\include\UI\UIElements\UIPanel.h" />
+    <ClInclude Include="src\include\UI\UIElements\UIText.h" />
+    <ClInclude Include="src\include\UI\UIState.h" />
+    <ClInclude Include="src\include\UI\UIStates\DeathScreen.h" />
+    <ClInclude Include="src\include\UI\UIStates\MainMenu.h" />
+    <ClInclude Include="src\include\UI\UIStates\TestState.h" />
     <ClInclude Include="src\include\Utility.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

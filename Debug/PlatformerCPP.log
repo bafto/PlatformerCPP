@@ -1,12 +1,2 @@
-﻿  Entity.cpp
-  Game.cpp
-  CopyEnemy.cpp
-  Enemy.cpp
-  PathEnemy.cpp
-  TrackEnemy.cpp
-  EventTrigger.cpp
-  Level.cpp
-  Player.cpp
-  main.cpp
-  Code wird generiert...
+﻿  Player.cpp
   PlatformerCPP.vcxproj -> C:\Users\Hendrik\source\repos\PlatformerCPP\Debug\PlatformerCPP.exe
