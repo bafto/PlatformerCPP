@@ -24,22 +24,22 @@ void UIButton::Initialize()
 	text.SetColor(sf::Color::White);
 	text.SetCharacterSize(18);
 
-	sf::FloatRect textRect = text.GetLocalBounds();
-	text.SetRelativePosition(rect.getSize() / 2.f - sf::Vector2f(textRect.width / 2.f, textRect.height / 2.f));
+	sf::Vector2f textSize = text.GetSize();
+	text.SetRelativePosition((GetSize() / 2.f) - sf::Vector2f(textSize.x / 2.f, textSize.y / 2.f));
 
 	OnMouseEnter += [&](UIElement*) { rect.setOutlineThickness(1); };
 	OnClick += [&](UIElement*) { rect.setOutlineColor(clickColor); };
-	OnHold += [&](UIElement*) { rect.setOutlineColor(clickColor); };
+	OnHold += [&](UIElement*) { rect.setOutlineThickness(0); };
 	OnRelease += [&](UIElement*) { rect.setOutlineColor(hoverColor); };
-	OnHover += [&](UIElement*) { rect.setOutlineColor(hoverColor); };
+	OnHover += [&](UIElement*) { rect.setOutlineColor(hoverColor); rect.setOutlineThickness(1); };
 	OnMouseExit += [&](UIElement*) { rect.setOutlineThickness(0); };
 }
 
 void UIButton::SetString(std::string str)
 {
 	text.SetString(str);
-	sf::FloatRect textRect = text.GetLocalBounds();
-	text.SetRelativePosition((rect.getSize() / 2.f) - sf::Vector2f(textRect.width / 2.f, textRect.height / 2.f));
+	sf::Vector2f textSize = text.GetSize();
+	text.SetRelativePosition((GetSize() / 2.f) - sf::Vector2f(textSize.x / 2.f, textSize.y / 2.f));
 }
 
 void UIButton::SetTextColor(sf::Color color)

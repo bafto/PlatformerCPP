@@ -126,6 +126,24 @@ void UIElement::SetAbsolutePosition(sf::Vector2f pos)
 		c->SetRelativePosition(c->GetRelativePosition());
 }
 
+void UIElement::SetPercentagePosition(sf::Vector2f pos)
+{
+	if (parent != nullptr)
+	{
+		sf::Vector2f val = pos / 100.f;
+		SetRelativePosition(sf::Vector2f(val.x * parent->GetSize().x, val.y * parent->GetSize().y));
+	}
+}
+
+void UIElement::SetPercentagePositionCentered(sf::Vector2f pos)
+{
+	if (parent != nullptr)
+	{
+		sf::Vector2f val = pos / 100.f;
+		SetRelativePosition(sf::Vector2f(val.x * parent->GetSize().x, val.y * parent->GetSize().y) - GetSize() / 2.f);
+	}
+}
+
 sf::Vector2f UIElement::GetRelativePosition()
 {
 	return relativePosition;
@@ -134,4 +152,9 @@ sf::Vector2f UIElement::GetRelativePosition()
 sf::Vector2f UIElement::GetAbsolutePosition()
 {
 	return rect.getPosition();
+}
+
+sf::Vector2f UIElement::GetSize()
+{
+	return rect.getSize();
 }

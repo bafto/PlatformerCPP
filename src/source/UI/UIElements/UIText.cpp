@@ -54,7 +54,8 @@ std::string UIText::GetString()
 	return drawText.getString();
 }
 
-sf::FloatRect UIText::GetLocalBounds()
+sf::Vector2f UIText::GetSize()
 {
-	return drawText.getLocalBounds();
+	sf::FloatRect bounds = drawText.getLocalBounds();
+	return sf::Vector2f(bounds.width, bounds.height);
 }

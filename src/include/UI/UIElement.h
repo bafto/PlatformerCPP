@@ -24,9 +24,12 @@ public:
 
 	virtual void SetRelativePosition(sf::Vector2f pos);
 	virtual void SetAbsolutePosition(sf::Vector2f pos);
+	virtual void SetPercentagePosition(sf::Vector2f pos);
+	virtual void SetPercentagePositionCentered(sf::Vector2f pos);
 
-	sf::Vector2f GetRelativePosition();
-	sf::Vector2f GetAbsolutePosition();
+	virtual sf::Vector2f GetRelativePosition();
+	virtual sf::Vector2f GetAbsolutePosition();
+	virtual sf::Vector2f GetSize();
 
 	void Recalculate();
 

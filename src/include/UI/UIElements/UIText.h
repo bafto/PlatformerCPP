@@ -19,8 +19,8 @@ public:
 	void SetCharacterSize(unsigned int size);
 
 	std::string GetString();
-	sf::FloatRect GetLocalBounds();
-	
+	virtual sf::Vector2f GetSize() override;
+
 private:
 	sf::Text drawText;
 };
