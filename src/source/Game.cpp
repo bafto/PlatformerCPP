@@ -3,11 +3,13 @@
 #include "../include/Utility.h"
 #include "../include/GameException.h"
 
+#include <Windows.h>
+
 #pragma warning (disable : 26812)
 
 Game::Game()
 	:
-	wnd(sf::VideoMode::getDesktopMode(), "PlatformerCPP"),
+	wnd(sf::VideoMode::getDesktopMode(), "PlatformerCPP", sf::Style::Fullscreen),
 	DeltaTime(0),
 	Difficulty(0),
 	gameMode(GameMode::MainMenu),
@@ -37,7 +39,8 @@ void Game::Initialize()
 
 	HUDView = sf::View(sf::FloatRect(0, 0, 1920, 1080));
 
-	testState.Initialize();
+	//testState.Initialize();
+	mainMenu.Initialize();
 	input.Initialize();
 	player.Initialize();
 	level.Initialize("assets\\Levels\\level0.level");
@@ -73,6 +76,10 @@ void Game::updateEvents()
 		case sf::Event::Closed:
 			wnd.close();
 			break;
+		case sf::Event::KeyPressed:
+			if (e.key.code == sf::Keyboard::Escape)
+				wnd.close();
+			break;
 		default:
 			break;
 		}
@@ -102,7 +109,8 @@ void Game::update()
 	switch (gameMode)
 	{
 	case Game::GameMode::MainMenu:
-		testState.update(DeltaTime);
+		mainMenu.update(DeltaTime);
+		//testState.update(DeltaTime);
 		break;
 	case Game::GameMode::InGame:
 #ifdef _DEBUG
@@ -145,7 +153,8 @@ void Game::render()
 	switch (gameMode)
 	{
 	case Game::GameMode::MainMenu:
-		testState.render(wnd);
+		mainMenu.render(wnd); 
+		//testState.render(wnd);
 		break;
 	case Game::GameMode::InGame:
 		GameView = sf::View(sf::FloatRect(util::VecClamp(player.rect.getPosition() - sf::Vector2f(960, 540), sf::Vector2f(0.f, 0.f), { level.tilemap.GetPixelSize() - sf::Vector2f(1920, 1080) }), sf::Vector2f(1920, 1080)));
