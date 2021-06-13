@@ -186,8 +186,7 @@ void Player::Kill()
 	}
 	if (deathtimer == 50)
 	{
-		//Game::GetInstance().gameMode = Game::GameMode::DeathScreen;
-		Game::GetInstance().Reset(Game::GetInstance().level.GetFilePath());
+		Game::GetInstance().gameMode = Game::GameMode::DeathScreen;
 		deathtimer = 0;
 	}
 }

@@ -39,6 +39,7 @@ void Game::Initialize()
 
 	//testState.Initialize();
 	mainMenu.Initialize();
+	deathScreen.Initialize();
 	input.Initialize();
 	/*player.Initialize();
 	level.Initialize("assets\\Levels\\level0.level");*/
@@ -137,6 +138,7 @@ void Game::update()
 #endif
 		break;
 	case Game::GameMode::DeathScreen:
+		deathScreen.update(DeltaTime);
 		break;
 	default:
 		throw GameException("Game Exception", "Invalid GameMode", __FILE__, __LINE__);
@@ -170,7 +172,7 @@ void Game::render()
 		wnd.setView(GameView);
 		break;
 	case Game::GameMode::DeathScreen:
-		wnd.setView(HUDView);
+		deathScreen.render(wnd);
 		break;
 	default:
 		break;

@@ -7,6 +7,7 @@
 #include "Input.h"
 #include "UI/UIStates/TestState.h"
 #include "UI/UIStates/MainMenu.h"
+#include "UI/UIStates/DeathScreen.h"
 
 class Game : public NonCopyable
 {
@@ -73,5 +74,6 @@ private:
 private:
 	TestState testState;
 	MainMenu mainMenu;
+	DeathScreen deathScreen;
 
 };
