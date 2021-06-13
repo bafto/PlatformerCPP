@@ -20,7 +20,9 @@ namespace util
 
 	bool ShapeVecIntersect(const sf::RectangleShape& rect, const sf::Vector2f& vec)
 	{
-		return sf::FloatRect(rect.getPosition(), rect.getSize()).contains(vec);
+		sf::Vector2f rectPos = rect.getPosition();
+		sf::Vector2f rectSize = rect.getSize();
+		return vec.x > rectPos.x && vec.x < rectPos.x + rectSize.x && vec.y > rectPos.y && vec.y < rectPos.y + rectSize.y;
 	}
 
 	bool ShapeRectIntersect(const sf::RectangleShape& rect, const sf::FloatRect& other)
