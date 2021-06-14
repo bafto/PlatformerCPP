@@ -186,7 +186,12 @@ void Player::Kill()
 	}
 	if (deathtimer == 50)
 	{
-		Game::GetInstance().gameMode = Game::GameMode::DeathScreen;
+		Game& game = Game::GetInstance();
+		game.gameMode = Game::GameMode::DeathScreen;
+		sf::Texture texture;
+		texture.create(game.wnd.getSize().x, game.wnd.getSize().y);
+		texture.update(game.wnd);
+		game.deathScreen.MainPanel.SetImage(texture);
 		deathtimer = 0;
 	}
 }

@@ -74,19 +74,19 @@ void MainMenu::Initialize()
 	Difficulty1.SetString("Easy");
 	Difficulty1.SetTextColor(sf::Color::White);
 	Difficulty1.SetColor(sf::Color(128, 128, 128));
-	Difficulty1.OnRelease += [&](UIElement*) {Game::GetInstance().Difficulty = 1; Game::GetInstance().Reset("assets\\Levels\\level0.level"); };
+	Difficulty1.OnRelease += [&](UIElement*) {Game::GetInstance().Difficulty = 1; elements[0] = &HomeScreen; Game::GetInstance().Reset("assets\\Levels\\level0.level"); };
 
 	Difficulty2.SetPercentagePositionCentered({ 50, 38 });
 	Difficulty2.SetString("Medium");
 	Difficulty2.SetTextColor(sf::Color::White);
 	Difficulty2.SetColor(sf::Color(128, 128, 128));
-	Difficulty2.OnRelease += [&](UIElement*) {Game::GetInstance().Difficulty = 2; Game::GetInstance().Reset("assets\\Levels\\level0.level"); };
+	Difficulty2.OnRelease += [&](UIElement*) {Game::GetInstance().Difficulty = 2; elements[0] = &HomeScreen; Game::GetInstance().Reset("assets\\Levels\\level0.level"); };
 
 	Difficulty3.SetPercentagePositionCentered({ 50, 46 });
 	Difficulty3.SetString("Hard");
 	Difficulty3.SetTextColor(sf::Color::White);
 	Difficulty3.SetColor(sf::Color(128, 128, 128));
-	Difficulty3.OnRelease += [&](UIElement*) {Game::GetInstance().Difficulty = 3; Game::GetInstance().Reset("assets\\Levels\\level0.level"); };
+	Difficulty3.OnRelease += [&](UIElement*) {Game::GetInstance().Difficulty = 3; elements[0] = &HomeScreen; Game::GetInstance().Reset("assets\\Levels\\level0.level"); };
 
 	Back.SetPercentagePositionCentered({ 50, 54 });
 	Back.SetString("Back");

@@ -2,6 +2,7 @@
 
 #include "../UIState.h"
 #include "../UIElements/UIButton.h"
+#include "../UIElements/UIImage.h"
 
 class DeathScreen : public UIState
 {
@@ -11,8 +12,10 @@ public:
 
 	virtual void Initialize() override;
 
+public:
+	UIImage MainPanel;
+
 private:
-	UIPanel MainPanel;
 	UIText Headline;
 	UIButton Retry, MainMenu, Quit;
 

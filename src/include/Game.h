@@ -71,9 +71,11 @@ private:
 	std::string frameRateStr;
 	std::string HUDStr;
 
+public:
+	DeathScreen deathScreen;
+
 private:
 	TestState testState;
 	MainMenu mainMenu;
-	DeathScreen deathScreen;
 
 };
