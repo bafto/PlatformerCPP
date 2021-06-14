@@ -192,6 +192,7 @@ void Player::Kill()
 		texture.create(game.wnd.getSize().x, game.wnd.getSize().y);
 		texture.update(game.wnd);
 		game.deathScreen.MainPanel.SetImage(texture);
+		game.deathScreen.MainPanel.SetColor(sf::Color(150, 150, 150));
 		deathtimer = 0;
 	}
 }

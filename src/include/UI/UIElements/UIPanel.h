@@ -8,5 +8,5 @@ public:
 	UIPanel(sf::FloatRect bounds);
 	virtual ~UIPanel();
 
-	void SetColor(sf::Color color);
+	virtual void SetColor(sf::Color color);
 };
