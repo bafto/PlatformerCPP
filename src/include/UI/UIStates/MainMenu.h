@@ -20,4 +20,7 @@ private:
 	UIText Headline2;
 	UIButton Difficulty1, Difficulty2, Difficulty3, Back;
 
+	sf::Sound btnHover, btnClick;
+	sf::SoundBuffer btnHoverBuffer, btnClickBuffer;
+
 };

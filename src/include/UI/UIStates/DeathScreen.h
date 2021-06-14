@@ -19,4 +19,7 @@ private:
 	UIText Headline;
 	UIButton Retry, MainMenu, Quit;
 
+	sf::Sound btnHover, btnClick;
+	sf::SoundBuffer btnHoverBuffer, btnClickBuffer;
+
 };

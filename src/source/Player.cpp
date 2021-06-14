@@ -87,6 +87,7 @@ void Player::update(const float& DeltaTime)
 				if (util::ShapeIntersect(e->rect, rect) && vulnerable)
 				{
 					health -= e->GetDamage();
+					health = health <= 0 ? 0 : health;
 					hitTimer = 0.f;
 					vulnerable = false;
 					hitSound.play();
