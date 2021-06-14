@@ -4,7 +4,7 @@ UIImage::UIImage(sf::FloatRect bounds)
 	:
 	UIPanel(bounds)
 {
-	texture.create(bounds.width, bounds.height);
+	texture.create((int)bounds.width, (int)bounds.height);
 	rect.setTexture(&texture);
 }
 

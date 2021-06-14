@@ -87,6 +87,9 @@
     <ClCompile Include="src\source\UI\UIStates\DeathScreen.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="src\source\UI\UIElements\UIImage.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\include\Game.h">
@@ -168,6 +171,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="src\include\UI\UIStates\DeathScreen.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="src\include\UI\UIElements\UIImage.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

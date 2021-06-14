@@ -176,6 +176,7 @@
     <ClCompile Include="src\source\Player.cpp" />
     <ClCompile Include="src\source\UI\UIElement.cpp" />
     <ClCompile Include="src\source\UI\UIElements\UIButton.cpp" />
+    <ClCompile Include="src\source\UI\UIElements\UIImage.cpp" />
     <ClCompile Include="src\source\UI\UIElements\UIPanel.cpp" />
     <ClCompile Include="src\source\UI\UIElements\UIText.cpp" />
     <ClCompile Include="src\source\UI\UIState.cpp" />
@@ -205,6 +206,7 @@
     <ClInclude Include="src\include\Player.h" />
     <ClInclude Include="src\include\UI\UIElement.h" />
     <ClInclude Include="src\include\UI\UIElements\UIButton.h" />
+    <ClInclude Include="src\include\UI\UIElements\UIImage.h" />
     <ClInclude Include="src\include\UI\UIElements\UIPanel.h" />
     <ClInclude Include="src\include\UI\UIElements\UIText.h" />
     <ClInclude Include="src\include\UI\UIState.h" />

@@ -60,7 +60,7 @@ void DeathScreen::Initialize()
 	MainMenu.SetClickSound(&btnClick);
 
 	Quit.SetPercentagePositionCentered({ 50, 46 });
-	Quit.SetString("Quit");
+	Quit.SetString("Rage Quit");
 	Quit.SetTextColor(sf::Color::White);
 	Quit.SetHoverColor(sf::Color::White);
 	Quit.SetColor(sf::Color(128, 128, 128));
