@@ -1,7 +1,32 @@
-﻿  DeathScreen.cpp
+﻿  Entity.cpp
+  Game.cpp
+  GameException.cpp
+  Input.cpp
+  CopyEnemy.cpp
+  Enemy.cpp
+  PathEnemy.cpp
+  SpinEnemy.cpp
+  TrackEnemy.cpp
+  EventTrigger.cpp
+  Level.cpp
+  TextureMap.cpp
+  Tilemap.cpp
+  Player.cpp
+  UIElement.cpp
+  UIButton.cpp
+  UIImage.cpp
+  UIPanel.cpp
+  UIText.cpp
+  UIState.cpp
+  Kompilieren...
+  DeathScreen.cpp
+  MainMenu.cpp
+  TestState.cpp
+  Utility.cpp
+  main.cpp
   Code wird generiert.
-  1 of 1586 functions (<0.1%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+  80 of 1586 functions ( 5.0%) were compiled, the rest were copied from previous compilation.
+    1 functions were new in current compilation
+    22 functions had inline decision re-evaluated but remain unchanged
   Codegenerierung ist abgeschlossen.
   PlatformerCPP.vcxproj -> C:\Users\Hendrik\source\repos\PlatformerCPP\Release\PlatformerCPP.exe
