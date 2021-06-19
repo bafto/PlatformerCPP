@@ -17,7 +17,7 @@ Game::Game()
 {
 	Debug::Println("Instanciating Game");
 
-	wnd.setFramerateLimit(100);
+	wnd.setFramerateLimit(100); //The game speed depends on the framerate so it is fixed
 	if (!font.loadFromFile("assets\\Fonts\\arial.ttf"))
 		throw FILEEXCEPTION(std::string("assets\\Fonts\\arial.ttf"));
 	HUDText.setFillColor(sf::Color::White);
@@ -37,12 +37,9 @@ void Game::Initialize()
 
 	HUDView = sf::View(sf::FloatRect(0, 0, 1920, 1080));
 
-	//testState.Initialize();
 	mainMenu.Initialize();
 	deathScreen.Initialize();
 	input.Initialize();
-	/*player.Initialize();
-	level.Initialize("assets\\Levels\\level0.level");*/
 
 	Debug::Println("Done initializing");
 }
@@ -55,6 +52,7 @@ Game& Game::GetInstance()
 
 void Game::run()
 {
+	//closing the window ends the game
 	while (wnd.isOpen())
 	{
 		updateEvents();
@@ -65,6 +63,7 @@ void Game::run()
 
 void Game::updateEvents()
 {
+	//setup input for the next input state
 	input.clear();
 
 	sf::Event e;
@@ -83,35 +82,38 @@ void Game::updateEvents()
 			break;
 		}
 
+		//update keyboard and mouse states
 		input.update(e);
 	}
 
+	//needed to get correct mouse positions etc.
 	input.finishUpdate(&wnd);
 }
 
 void Game::update()
 {
-	DeltaTime = DeltaClock.restart().asSeconds();
+	DeltaTime = DeltaClock.restart().asSeconds(); //update DeltaTime
 #ifdef _DEBUG
-	frameTimer += DeltaTime;
-	HUDStr = frameRateStr;
-	if (frameTimer >= 0.25f)
+	frameTimer += DeltaTime; //update frameTimer by DeltaTime
+	HUDStr = frameRateStr; //and set the HUDStr initialiy to frameRateStr
+	if (frameTimer >= 0.25f) //framerate is measured every 1/4 second
 	{
 		frameTimer = 0.f;
 		frameRateStr = std::to_string((int)(1.f / DeltaTime));
 	}
-	AddToHUDText(std::to_string(DeltaTime));
+	AddToHUDText(std::to_string(DeltaTime)); //add the DeltaTime to the HUD
 #else
 	HUDStr = "";
 #endif
 
+	//switch on current gameMode to update either inGame or the correct UIState
 	switch (gameMode)
 	{
 	case Game::GameMode::MainMenu:
 		mainMenu.update(DeltaTime);
-		//testState.update(DeltaTime);
 		break;
 	case Game::GameMode::InGame:
+		//handle frame stepping in Debug mode, else just update player and level
 #ifdef _DEBUG
 		if (frameStep)
 			freeze = true;
@@ -128,6 +130,7 @@ void Game::update()
 		if (!freeze)
 		{
 #endif
+			//update player and level
 			player.update(DeltaTime);
 			level.update(DeltaTime);
 #ifdef _DEBUG
@@ -150,26 +153,29 @@ void Game::render()
 {
 	wnd.clear();
 
+	//switch on current gameMode to render either inGame or the correct UIState
 	switch (gameMode)
 	{
 	case Game::GameMode::MainMenu:
 		mainMenu.render(wnd); 
-		//testState.render(wnd);
 		break;
 	case Game::GameMode::InGame:
+		//Generate GameView based on the players position
 		GameView = sf::View(sf::FloatRect(util::VecClamp(player.rect.getPosition() - sf::Vector2f(960, 540), sf::Vector2f(0.f, 0.f), { level.tilemap.GetPixelSize() - sf::Vector2f(1920, 1080) }), sf::Vector2f(1920, 1080)));
 		wnd.setView(GameView);
 
+		//Draw level and player on the GameView
 		level.render(wnd);
 		player.render(wnd);
 
+		//Draw the HUD string in the HUDView
 		wnd.setView(HUDView);
 
-		//Draw Global HUD
+		//Draw inGame HUD (only exists in Debug mode)
 		HUDText.setString(HUDStr);
 		wnd.draw(HUDText);
 
-		wnd.setView(GameView);
+		wnd.setView(GameView); //reset the view to GameView
 		break;
 	case Game::GameMode::DeathScreen:
 		deathScreen.render(wnd);
@@ -183,8 +189,10 @@ void Game::render()
 
 void Game::Reset(std::string levelPath)
 {
+	//reset the player
 	player = Player();
 	player.Initialize();
+	//load the level from levelPath
 	level.Initialize(levelPath);
-	gameMode = GameMode::InGame;
+	gameMode = GameMode::InGame; //make sure we are inGame
 }

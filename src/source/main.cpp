@@ -6,18 +6,18 @@ int main()
 {
 	try
 	{
-		Game::GetInstance().Initialize();
-		Game::GetInstance().run();
+		Game::GetInstance().Initialize(); //Initalize the game instance
+		Game::GetInstance().run(); //run the game
 	}
-	catch (GameException& e)
+	catch (GameException& e) //custom exceptions thrown when assets are not loading etc
 	{
 		MessageBoxA(NULL, e.msg().c_str(), e.caption().c_str(), MB_OK);
 	}
-	catch (std::exception& e)
+	catch (std::exception& e) //standard exceptions for example vector out of range errors
 	{
 		MessageBoxA(NULL, e.what(), "Standard Exception", MB_OK);
 	}
-	catch (...)
+	catch (...) //someone fucked up baaad
 	{
 		MessageBoxA(NULL, "An error occured", "Unknown Error", MB_OK);
 	}

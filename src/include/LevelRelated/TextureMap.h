@@ -2,7 +2,7 @@
 
 #include "../GeneralIncludes.h"
 
-//basically a wrapper for the map
+//loads and contains tile textures from a .texmap file
 class TextureMap
 {
 public:

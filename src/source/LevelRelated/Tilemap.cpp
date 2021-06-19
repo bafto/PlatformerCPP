@@ -44,10 +44,14 @@ Tilemap::Tilemap(const std::vector<std::string>& lines)
 
 void Tilemap::Initialize(const std::vector<std::string>& lines)
 {
+    //Initialize the tile textures
 	texMap.Initialize("assets\\Levels\\" + lines[1]);
 
+    //width and height in number of tiles
 	height = lines.size() - 2;
 	width = lines[2].length();
+
+    //clear and setup stuff if the map is reinitialized
 
     hitboxes.clear();
 
@@ -62,13 +66,14 @@ void Tilemap::Initialize(const std::vector<std::string>& lines)
 	{
 		for (int x = 0; x < width; x++)
 		{
-			sf::Vector2f WorldPos(x * Tile::TileSize.x, y * Tile::TileSize.y);
-			char ch = lines[lines.size() - height + y][x];
+			sf::Vector2f WorldPos(x * Tile::TileSize.x, y * Tile::TileSize.y); //set tile position
+			char ch = lines[lines.size() - height + y][x]; //get the tiles ID from the number of the character
 			int tileID = std::atoi(&ch);
 
 			tiles[x][y] = Tile(WorldPos, tileID);
 		}
 	}
+    //prepare the surface
     surface.setPosition({ 0.f, 0.f });
     surface.setSize(GetPixelSize());
 	LoadTextures();
@@ -77,6 +82,7 @@ void Tilemap::Initialize(const std::vector<std::string>& lines)
 
 void Tilemap::LoadTextures()
 {
+    //huge if-else stuff to give every tile the right texture of its type (like a corner or a top tile etc.)
     for (int y = 0; y < height; y++)
     {
         for (int x = 0; x < width; x++)
@@ -182,12 +188,15 @@ void Tilemap::LoadTextures()
         }
     }
 
+    //create the renderTexture with the correct size
     renderTexture.create((unsigned int)(width * Tile::TileSize.x), (unsigned int)(height * Tile::TileSize.y));
     renderTexture.clear();
 
+    //temp shape for rendering
     sf::RectangleShape shape;
     shape.setSize(Tile::TileSize);
 
+    //draw every tile on the renderTexture once
     for (int y = 0; y < height; y++)
     {
         for (int x = 0; x < width; x++)
@@ -199,6 +208,7 @@ void Tilemap::LoadTextures()
     }
 
     renderTexture.display();
+    //finish the surface
     texture = renderTexture.getTexture();
     surface.setTexture(&texture);
 }

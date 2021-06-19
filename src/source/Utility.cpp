@@ -1,5 +1,7 @@
 #include "../include/Utility.h"
 
+//stuff in here is declared in utility.h
+
 namespace util
 {
 	bool RectIntersect(const sf::FloatRect& rect, const sf::FloatRect& other)

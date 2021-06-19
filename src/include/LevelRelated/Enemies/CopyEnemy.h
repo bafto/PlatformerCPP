@@ -2,6 +2,7 @@
 
 #include "Enemy.h"
 
+//An enemy that copys the players movement
 class CopyEnemy : public Enemy
 {
 public:

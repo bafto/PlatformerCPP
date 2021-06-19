@@ -4,7 +4,8 @@
 #include "../Delegate.h"
 #include "../NonCopyable.h"
 
-class UIElement : public NonCopyable
+//Base class for all UIElements
+class UIElement : public NonCopyable //NonCopyable because of the UIElement pointers
 {
 private:
 	friend class UIState;

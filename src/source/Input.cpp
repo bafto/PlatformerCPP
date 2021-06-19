@@ -5,7 +5,6 @@
 
 Input::Input()
 {
-	Initialize();
 }
 
 void Input::Initialize()
@@ -24,8 +23,10 @@ void Input::Initialize()
 
 void Input::clear()
 {
+	//old keyboard and mouse states are safed for 1 frame (for stuff like button held info)
 	std::copy(std::begin(keyboardState), std::end(keyboardState), std::begin(lastKeyboardState));
 	std::copy(std::begin(mouseState), std::end(mouseState), std::begin(lastMouseState));
+	//clear the mouse and keyboard state
 	for (int i = 0; i < sf::Keyboard::Key::KeyCount; i++)
 		keyboardState[i] = ButtonState();
 	for (int i = 0; i < sf::Mouse::Button::ButtonCount; i++)

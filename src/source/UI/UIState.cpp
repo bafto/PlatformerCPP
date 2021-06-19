@@ -25,6 +25,7 @@ void UIState::update(const float& DeltaTime)
 
 void UIState::render(sf::RenderTarget& target)
 {
+	//render all elements in HUD view
 	target.setView(Game::GetInstance().GetHUDView());
 
 	for (auto& e : elements)

@@ -2,6 +2,7 @@
 
 #include "Enemy.h"
 
+//An enemy that spins around a point, ignoring gravity
 class SpinEnemy : public Enemy
 {
 public:

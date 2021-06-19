@@ -29,6 +29,7 @@ Level::Level(std::string file)
 
 Level::~Level()
 {
+	//clear enemies
 	for (unsigned int i = 0; i < Enemies.size(); i++)
 	{
 		delete Enemies[i];
@@ -40,8 +41,9 @@ void Level::Initialize(std::string file)
 {
 	Debug::Println("Initializing Level");
 
-	gravity = 25.f;
-	FilePath = file;
+	gravity = 25.f; //reset gravity if it was changed
+	FilePath = file; //set the file path
+	//clear enemies
 	for (unsigned int i = 0; i < Enemies.size(); i++)
 	{
 		delete Enemies[i];
@@ -52,11 +54,11 @@ void Level::Initialize(std::string file)
 	fileLine.clear();
 	counter = 0;
 
+	//load the file
 	std::ifstream ifs(file);
 	if (ifs.is_open())
 	{
-		//read the file
-		//maybe we have to seekg(3) but we'll see
+		//read the file line by line
 		for (std::string line; std::getline(ifs, line);)
 		{
 			fileLine.push_back(line);
@@ -70,7 +72,6 @@ void Level::Initialize(std::string file)
 		Player& player = Game::GetInstance().player;
 		player.rect.setPosition(spawnPoint);
 		player.velocity = { 0.f, 0.f };
-		//player.health = player.maxHealth;
 
 		InitializeEvents();
 		InitializeEnemies();
@@ -86,15 +87,19 @@ void Level::Initialize(std::string file)
 
 void Level::InitializeEvents()
 {
+	//loop until all events are initialized
 	for (counter = 2; fileLine[counter] != "enemies:"; counter++)
 	{
+		//split the current line into the different parameters
 		std::vector<std::string> evtLine = util::split(fileLine[counter], ' ');
 
+		//create a new EventTrigger with the parameters from the line
 		EventTriggers.emplace_back(
 			(EventTrigger::EventID)std::stoi(evtLine[0]),
 			sf::FloatRect((float)std::stoi(evtLine[1]), (float)std::stoi(evtLine[2]), (float)std::stoi(evtLine[3]), (float)std::stoi(evtLine[4]))
 		);
 
+		//set the events actions depending on its ID
 		EventTrigger& lastTrigger = EventTriggers[EventTriggers.size() - 1];
 		switch (lastTrigger.eventType)
 		{
@@ -117,10 +122,13 @@ void Level::InitializeEvents()
 
 void Level::InitializeEnemies()
 {
+	//loop until all enemies are initialized
 	for (++counter; fileLine[counter] != "map:"; counter++)
 	{
+		//split the line into the different parameters
 		std::vector<std::string> enemyLine = util::split(fileLine[counter], ' ');
-		sf::Vector2f pos = { (float)std::stoi(enemyLine[1]), (float)std::stoi(enemyLine[2]) };
+		sf::Vector2f pos = { (float)std::stoi(enemyLine[1]), (float)std::stoi(enemyLine[2]) }; //position of the new enemy
+		//construct a new enemy depending on the ID
 		switch (std::stoi(enemyLine[0]))
 		{
 		case (int)Enemy::EnemyID::Default:
@@ -163,9 +171,11 @@ void Level::InitializeTilemap()
 	std::vector<std::string> mapLines;
 	mapLines.reserve(fileLine.size());
 
+	//get mapLines from the rest of the file
 	for (; counter < fileLine.size(); counter++)
 		mapLines.push_back(fileLine[counter]);
 
+	//initialize the tilemap with the lines
 	tilemap.Initialize(mapLines);
 }
 
@@ -192,12 +202,6 @@ void Level::render(sf::RenderTarget& target)
 	{
 		enemy->render(target);
 	}
-}
-
-void Level::Reset()
-{
-	Game::GetInstance().player = Player();
-	Initialize(FilePath);
 }
 
 std::string Level::GetFilePath()

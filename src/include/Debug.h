@@ -18,7 +18,7 @@ namespace Debug
 	{
 #ifdef _DEBUG
 		std::cout << arg << " ";
-		Print(args...);
+		Print(args...); //recursive use to resolve all variadic arguments
 #endif
 	}
 
@@ -35,7 +35,7 @@ namespace Debug
 	{
 #ifdef _DEBUG
 		std::cout << arg << " ";
-		Println(args...);
+		Println(args...); //recursive use to resolve all variadic arguments
 #endif
 	}
 }

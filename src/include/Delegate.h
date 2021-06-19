@@ -6,6 +6,7 @@
 template<typename TReturnType, typename... TArgs>
 class Delegate;
 
+//Delegate for any return type (returns a vector of TReturnType in the order of function call)
 template<typename TReturnType, typename... TArgs>
 class Delegate<TReturnType(TArgs...)>
 {
@@ -15,11 +16,6 @@ public:
 
 	Delegate() = default;
 	virtual ~Delegate() = default;
-
-	Delegate(const Delegate&) = delete;
-	Delegate(Delegate&&) = delete;
-	void operator=(const Delegate&) = delete;
-	void operator=(Delegate&&) = delete;
 
 	ActualReturnType operator()(TArgs... args)
 	{
@@ -54,6 +50,7 @@ private:
 	std::vector<Function> functions;
 };
 
+//Delegate overload for void functions
 template<typename... TArgs>
 class Delegate<void(TArgs...)>
 {

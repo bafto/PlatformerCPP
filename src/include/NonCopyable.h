@@ -1,6 +1,8 @@
 #pragma once
 
-class NonCopyable {
+//deletes copy constructors and copy assignement operators for children
+class NonCopyable 
+{
 protected:
 	NonCopyable() = default;
 	virtual ~NonCopyable() = default;

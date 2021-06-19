@@ -20,11 +20,13 @@ SpinEnemy::~SpinEnemy()
 
 void SpinEnemy::AI(const float& DeltaTime)
 {
+	//rotate around startPosition
 	rect.setPosition(startPosition + util::RotateBy(sf::Vector2f(1, 1), timer) * distanceToAnchor);
 	nextPosition = rect.getPosition() + velocity;
 	timer += speed / 100;
 }
 
+//no collision
 void SpinEnemy::HandleCollision()
 {
 

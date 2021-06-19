@@ -2,6 +2,7 @@
 
 #include "Enemy.h"
 
+//An enemy that begins to follow the player on sight
 class TrackEnemy : public Enemy
 {
 public:

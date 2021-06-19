@@ -25,6 +25,7 @@ void Enemy::update(const float& DeltaTime)
 
 void Enemy::HandleCollision()
 {
+	//reset the position if enemy falls out of the world
 	if (util::IsVecClamp(rect.getPosition(), { 0.f, 0.f }, Game::GetInstance().level.tilemap.GetPixelSize()))
 		rect.setPosition(startPosition);
 	else
@@ -33,6 +34,7 @@ void Enemy::HandleCollision()
 
 void Enemy::AI(const float& DeltaTime)
 {
+	//only apply gravity, without other movement
 	velocity = util::VecClamp(velocity, { 0.f, 0.f }, { 0.f, Game::GetInstance().level.gravity });
 	nextPosition = rect.getPosition() + velocity;
 }

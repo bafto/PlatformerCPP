@@ -28,6 +28,7 @@ Player::Player()
 	color = sf::Color::Blue;
 	rect.setFillColor(color);
 
+	//setup the healthbar
 	healthbar.setFillColor(sf::Color::Red);
 
 	healthbaroutline.setFillColor(sf::Color::Transparent);
@@ -45,6 +46,7 @@ void Player::Initialize()
 {
 	Debug::Println("Initializing Player");
 
+	//load sound assets
 	if (!hitBuff.loadFromFile("assets\\sounds\\explosion.wav"))
 		throw FILEEXCEPTION(std::string("assets\\sounds\\explosion.wav"));
 	if (!jumpBuff.loadFromFile("assets\\sounds\\jump.wav"))
@@ -68,18 +70,22 @@ void Player::update(const float& DeltaTime)
 	}
 	else
 	{
+		//update the timers
 		lastDeath += DeltaTime;
 		hitTimer += DeltaTime;
 		vulnerable = hitTimer >= 1.f / Game::GetInstance().Difficulty;
+
 		color = vulnerable ? sf::Color::Blue : sf::Color(255, 127, 80);
 		lastPosition = rect.getPosition();
 
+		//check if the player is on the ground
 		grounded = Game::GetInstance().level.tilemap.Collides(sf::FloatRect(rect.getPosition() + sf::Vector2f(0.f, 2.f * gravityIndicator), rect.getSize()));
 
 		HandleInput(DeltaTime);
 
 		HandleCollision();
 
+		//apply enemy damage
 		if (vulnerable)
 		{
 			for (Enemy* e : Game::GetInstance().level.Enemies)
@@ -91,6 +97,7 @@ void Player::update(const float& DeltaTime)
 					hitTimer = 0.f;
 					vulnerable = false;
 					hitSound.play();
+					break;
 				}
 			}
 		}
@@ -99,6 +106,7 @@ void Player::update(const float& DeltaTime)
 
 void Player::HandleCollision()
 {
+	//die if out of world bounds
 	if (util::IsVecClamp(rect.getPosition(), { 0.f, 0.f }, Game::GetInstance().level.tilemap.GetPixelSize()))
 		dead = true;
 	else
@@ -107,31 +115,36 @@ void Player::HandleCollision()
 
 void Player::HandleInput(const float& DeltaTime)
 {
+	//Debug teleport
 #ifdef _DEBUG
 	if (Game::GetInstance().input.MouseState(sf::Mouse::Left).pressed)
 		rect.setPosition(Game::GetInstance().input.MousePosWorld() - rect.getSize() / 2.f);
 #endif
+	//handle movement,...
 	if (Game::GetInstance().input.KeyboardState(sf::Keyboard::A).down)
 		velocity.x -= speed * std::abs(velocity.x) * DeltaTime + acceleration;
 	if (Game::GetInstance().input.KeyboardState(sf::Keyboard::D).down)
 		velocity.x += speed * std::abs(velocity.x) * DeltaTime + acceleration;
+	//...gravity...
 	if (!grounded)
 		velocity.y += Game::GetInstance().level.gravity * gravityIndicator * DeltaTime;
+	//...and jumping
 	if (grounded && Game::GetInstance().input.KeyboardState(sf::Keyboard::W).pressed)
 	{
-		velocity.y -= jumpspeed * gravityIndicator;
+		velocity.y -= jumpspeed * gravityIndicator; //gravityIndicator if gravity is upside down
 		jumpSound.play();
 	}
 
-	velocity.x -= velocity.x / drag;
+	velocity.x -= velocity.x / drag; //slow the player down
 
 	velocity = util::VecClamp(velocity, { -maxWalkSpeed, -maxJumpSpeed }, { maxWalkSpeed, maxFallSpeed });
 
+	//update the trail for the copy enemies
 	trail.push_back(rect.getPosition());
 	if (trail.size() > 60)
 		trail.erase(trail.begin());
 
-	nextPosition = rect.getPosition() + velocity;
+	nextPosition = rect.getPosition() + velocity; //setup for HandleCollision
 }
 
 void Player::render(sf::RenderTarget& target)
@@ -151,6 +164,7 @@ void Player::render(sf::RenderTarget& target)
 
 	target.setView(Game::GetInstance().GetGameView());
 
+	//Debug drawing like nextPosition or the grounded rectangle
 #ifdef _DEBUG
 	sf::CircleShape point;
 	point.setRadius(2);
@@ -180,6 +194,7 @@ void Player::render(sf::RenderTarget& target)
 
 void Player::Kill()
 {
+	//wait half a second (50 frames) then continue to the deathscreen
 	if (deathtimer == 0)
 	{
 		dead = true;
@@ -189,6 +204,7 @@ void Player::Kill()
 	{
 		Game& game = Game::GetInstance();
 		game.gameMode = Game::GameMode::DeathScreen;
+		//get the deathscreen background
 		sf::Texture texture;
 		texture.create(game.wnd.getSize().x, game.wnd.getSize().y);
 		texture.update(game.wnd);

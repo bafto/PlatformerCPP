@@ -10,7 +10,7 @@ Entity::Entity()
     velocity(0.f, 0.f)
 {
 	rect.setPosition({ 0, 0 });
-	rect.setSize({ 50, 50 });
+	rect.setSize({ 50, 50 }); //every entity gets the base size (50, 50)
 }
 
 Entity::~Entity()
@@ -18,8 +18,10 @@ Entity::~Entity()
 
 void Entity::update(const float& DeltaTime)
 {
+    //update position based on gravity
 	if (!noGravity)
-		velocity.y += Game::GetInstance().level.gravity * DeltaTime; //uncomment when levels are added
+		velocity.y += Game::GetInstance().level.gravity * DeltaTime;
+    //resolve collision
 	HandleCollision();
 }
 

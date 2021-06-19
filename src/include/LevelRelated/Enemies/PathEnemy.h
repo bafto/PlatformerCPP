@@ -2,6 +2,7 @@
 
 #include "Enemy.h"
 
+//An enemy that follows a set path
 class PathEnemy : public Enemy
 {
 public:

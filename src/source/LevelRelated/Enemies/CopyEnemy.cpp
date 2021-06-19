@@ -20,6 +20,7 @@ CopyEnemy::~CopyEnemy()
 void CopyEnemy::AI(const float& DeltaTime)
 {
 	Player& player = Game::GetInstance().player;
+	//follow the players trail
 	if (player.trail.size() >= 60)
 		rect.setPosition(player.trail[(int)(player.trail.size() / distanceToPlayer) - 1]);
 	nextPosition = rect.getPosition() + velocity;

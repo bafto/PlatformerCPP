@@ -19,6 +19,7 @@ TrackEnemy::~TrackEnemy()
 
 void TrackEnemy::AI(const float& DeltaTime)
 {
+	//if it saw the player, move towards it
 	if (running)
 	{
 		velocity.x += util::VecNormalize(sf::Vector2f(Game::GetInstance().player.rect.getPosition().x - rect.getPosition().x, 0)).x * speed * DeltaTime;
@@ -26,6 +27,7 @@ void TrackEnemy::AI(const float& DeltaTime)
 	}
 	nextPosition = rect.getPosition() + velocity;
 	sf::Vector2f min = rect.getPosition() - area, max = rect.getPosition() + rect.getSize() + area;
+	//if the player entered the area, start following him
 	if (!running && !util::IsVecClamp(Game::GetInstance().player.rect.getPosition(), min, max))
 		running = true;
 }
